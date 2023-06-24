@@ -1,0 +1,19 @@
+/* App-wide styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    background: linear-gradient(to bottom, rgb(3, 110, 3), rgb(171, 209, 4));
+    font-family: 'Arial', sans-serif;
+    color: white;
+  }
+  
+  .app-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  

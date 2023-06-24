@@ -1,0 +1,22 @@
+/* Header styles */
+.header-container {
+    background-color: rgb(53, 53, 53);
+    padding: 10px 0;
+  }
+  
+  .nav-link {
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .logo {
+    margin-left: 20px;
+    color: white;
+  }
+  

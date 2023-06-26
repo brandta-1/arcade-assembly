@@ -1,0 +1,18 @@
+[
+    {
+        "firstName": "Cambric",
+        "lastName": "Moye",
+        "email": "Cammy@gmail.com",
+        "password": "password12345",
+        "gamertag": "BreathingAmoeba",
+        "avatarURL": "abc"
+    },
+    {
+        "firstName": "Dragonfly",
+        "lastName": "Jones",
+        "email": "DFly@gmail.com",
+        "password": "password12345",
+        "gamertag": "Dragonflys Dojo",
+        "avatarURL": "abc"
+    }
+]

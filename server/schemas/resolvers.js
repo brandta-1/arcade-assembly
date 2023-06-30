@@ -7,12 +7,12 @@ const resolvers = {
 
     // DONE - find all users - eventually populate with friends
     users: async () => {
-      return Users.find().populate('friends');
+      return Users.find().populate('friends').populate('favoriteGames');
     },
 
     // find single user
     user: async (parent, { userID }) => {
-      return Users.findOne({ _id: userID })
+      return Users.findOne({ _id: userID }).populate('friends');
     },
 
     // Display all of the games that are listed in our database - which are all the games saved by our users and what is coming from seed file
@@ -29,18 +29,22 @@ const resolvers = {
       return newUser;
     },
 
-    // add a friend to a user
-    addFriend: async(parent, {userID, friendID}) => {
+    // DONE - add a friend to a user
+    addFriend: async (parent, { userID, friendID }) => {
       return Users.findOneAndUpdate(
-        {_id: userID},
-        {
-          $addToSet: {friends: friendID}
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      )
+        { _id: userID },
+        { $addToSet: { friends: friendID } },
+        { new: true, runValidators: true, }
+      ).populate('friends')
+    },
+
+    // DONE - add a game to a users favorites
+    addFavoriteGame: async (parent, { userID, gamesID }) => {
+      return Users.findOneAndUpdate(
+        { _id: userID },
+        { $addToSet: { favoriteGames: gamesID } },
+        { new: true, runValidators: true }
+      ).populate('favoriteGames');
     }
   }
 }

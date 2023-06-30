@@ -10,6 +10,7 @@ const typeDefs = gql`
         gamertag: String
         avatarURL: String
         friends: [Users]
+        favoriteGames: [Games]
     }
 
     type Games {
@@ -46,7 +47,7 @@ const typeDefs = gql`
     addFriend(userID: ID!, friendID: ID!): Users
 
     # user adds a game to their favorites
-    # addFavoriteGame(userID: _id, gameId: _id): Users
+    addFavoriteGame(userID: ID!, gamesID: ID): Users
 
     # login the user
 

@@ -33,9 +33,15 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Users'
         }
-    ]
+    ],
 
     // Add in favorite games
+    favoriteGames: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Games'
+        }
+    ]
 
 
     // Recent games?

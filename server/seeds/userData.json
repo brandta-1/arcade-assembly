@@ -14,5 +14,165 @@
         "password": "password12345",
         "gamertag": "Dragonflys Dojo",
         "avatarURL": "abc"
-    }
+    },
+    {
+        "firstName": "Luke",
+        "lastName": "Skywalker",
+        "email": "luke@gmail.com",
+        "password": "password12345",
+        "gamertag": "JediMaster",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Hermione",
+        "lastName": "Granger",
+        "email": "hermione@gmail.com",
+        "password": "password12345",
+        "gamertag": "MagicWitch",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Walter",
+        "lastName": "White",
+        "email": "walter@gmail.com",
+        "password": "password12345",
+        "gamertag": "Heisenberg",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Frodo",
+        "lastName": "Baggins",
+        "email": "frodo@gmail.com",
+        "password": "password12345",
+        "gamertag": "RingBearer",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Leia",
+        "lastName": "Organa",
+        "email": "leia@gmail.com",
+        "password": "password12345",
+        "gamertag": "RebelPrincess",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Gandalf",
+        "lastName": "the Grey",
+        "email": "gandalf@gmail.com",
+        "password": "password12345",
+        "gamertag": "WizardSage",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Jesse",
+        "lastName": "Pinkman",
+        "email": "jesse@gmail.com",
+        "password": "password12345",
+        "gamertag": "YoBitch",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Obi-Wan",
+        "lastName": "Kenobi",
+        "email": "obiwan@gmail.com",
+        "password": "password12345",
+        "gamertag": "JediKnight",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Aragorn",
+        "lastName": "Elessar",
+        "email": "aragorn@gmail.com",
+        "password": "password12345",
+        "gamertag": "KingOfGondor",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Saul",
+        "lastName": "Goodman",
+        "email": "saul@gmail.com",
+        "password": "password12345",
+        "gamertag": "CriminalLawyer",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Han",
+        "lastName": "Solo",
+        "email": "han@gmail.com",
+        "password": "password12345",
+        "gamertag": "Smuggler",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Samwise",
+        "lastName": "Gamgee",
+        "email": "samwise@gmail.com",
+        "password": "password12345",
+        "gamertag": "LoyalFriend",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Mace",
+        "lastName": "Windu",
+        "email": "mace@gmail.com",
+        "password": "password12345",
+        "gamertag": "JediMaster",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Gimli",
+        "lastName": "Son of Gloin",
+        "email": "gimli@gmail.com",
+        "password": "password12345",
+        "gamertag": "DwarvenAxe",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Skyler",
+        "lastName": "White",
+        "email": "skyler@gmail.com",
+        "password": "password12345",
+        "gamertag": "ConcernedWife",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Rey",
+        "lastName": "Skywalker",
+        "email": "rey@gmail.com",
+        "password": "password12345",
+        "gamertag": "ForceBearer",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Legolas",
+        "lastName": "Greenleaf",
+        "email": "legolas@gmail.com",
+        "password": "password12345",
+        "gamertag": "ElvenArcher",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Gus",
+        "lastName": "Fring",
+        "email": "gus@gmail.com",
+        "password": "password12345",
+        "gamertag": "LosPollosHermanos",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Darth",
+        "lastName": "Vader",
+        "email": "vader@gmail.com",
+        "password": "password12345",
+        "gamertag": "DarkLord",
+        "avatarURL": "abc"
+      },
+      {
+        "firstName": "Bilbo",
+        "lastName": "Baggins",
+        "email": "bilbo@gmail.com",
+        "password": "password12345",
+        "gamertag": "AdventurousHobbit",
+        "avatarURL": "abc"
+      }
 ]

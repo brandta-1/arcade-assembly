@@ -23,5 +23,59 @@
 		"gameId": 85450,
 		"name": "Transformers Prime: The Game",
 		"url": "https://www.igdb.com/games/transformers-prime-the-game"
+	},
+    {
+		"gameId": 25076,
+		"cover": 80403,
+		"name": "Red Dead Redemption 2",
+		"release_dates": [
+			137265,
+			137266,
+			177006,
+			179286
+		],
+		"summary": "Red Dead Redemption 2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
+		"url": "https://www.igdb.com/games/red-dead-redemption-2"
+	},
+    {
+		"gameId": 7348,
+		"cover": 84569,
+		"name": "Halo: The Master Chief Collection",
+		"release_dates": [
+			22840,
+			180685,
+			215021,
+			454855
+		],
+		"summary": "The improved and enhanced Halo: The Master Chief Collection features visual enhancements with up to 4K UHD resolution, improved matchmaking, offline LAN, customizable installation options, and faster load times, it’s the definitive way to experience the ultimate Halo saga. Includes the extensive suite of campaign, multiplayer and additional features from Halo: Combat Evolved Anniversary, Halo 2: Anniversary, Halo 3, and Halo 4 - all updated to run at 60FPS.",
+		"url": "https://www.igdb.com/games/halo-the-master-chief-collection"
+	},
+    {
+		"gameId": 1985,
+		"cover": 87125,
+		"name": "Metal Gear Solid V: The Phantom Pain",
+		"release_dates": [
+			28543,
+			28544,
+			28545,
+			393762,
+			393763
+		],
+		"summary": "Metal Gear Solid V: The Phantom Pain is the final game in the Metal Gear series. It is the sequel to Metal Gear Solid V: Ground Zeroes released the year before and a prequel to the original Metal Gear. The game has a complex story with long cut-scene sequences, but there are fewer and they are shorter compared to earlier Metal Gear Solid titles. Most of the gameplay mechanics introduced in Ground Zeroes are carried over: it is still an action game and stealth oriented but replaces the linear corridor design from most earlier titles with large open world environments that offer the player unrestricted freedom for the approach. The world has now a real-time day and night cycle and various weather effects that influence enemy behaviour, visibility and sound. Sabotaging or destroying certain structures can also influence other parts of the map.",
+		"url": "https://www.igdb.com/games/metal-gear-solid-v-the-phantom-pain"
+	},
+    {
+		"gameId": 1020,
+		"cover": 120937,
+		"name": "Grand Theft Auto V",
+		"release_dates": [
+			20290,
+			20291,
+			20293,
+			20294,
+			403430
+		],
+		"summary": "Grand Theft Auto V is a vast open world game set in Los Santos, a sprawling sun-soaked metropolis struggling to stay afloat in an era of economic uncertainty and cheap reality TV. The game blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story.",
+		"url": "https://www.igdb.com/games/grand-theft-auto-v"
 	}
 ]

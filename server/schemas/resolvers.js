@@ -11,8 +11,8 @@ const resolvers = {
     },
 
     // find single user
-    user: async (parent, { userID }) => {
-      return Users.findOne({ _id: userID }).populate('friends');
+    user: async (parent, { userId }) => {
+      return Users.findOne({ _id: userId }).populate('friends').populate('favoriteGames');
     },
 
     // Display all of the games that are listed in our database - which are all the games saved by our users and what is coming from seed file

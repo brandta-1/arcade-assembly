@@ -11,11 +11,14 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        match: [/.+@.+\..+/, 'Must match an email address!']
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5
     },
     gamertag: {
         type: String,
@@ -23,6 +26,19 @@ const userSchema = new Schema({
     avatarURL: {
         type: String,
     },
+
+    // Add in a friends list of other users
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Users'
+        }
+    ]
+
+    // Add in favorite games
+
+
+    // Recent games?
 })
 
 const Users = model('Users', userSchema);

@@ -1,0 +1,27 @@
+[
+	{
+		"gameId": 176032,
+		"cover": 185893,
+		"name": "Nick Quest",
+		"release_dates": [
+			319506
+		],
+		"summary": "Nick Quest is a quirky, self-aware little RPG with a lot of character and heart. Packed with detailed maps, dangerous bosses, a great breadth of side quests, amazing dialogue, multiple endings, and a lot of laughs... Nick Quest is a game that will bring you to know a guy and his friends.",
+		"url": "https://www.igdb.com/games/nick-quest"
+	},
+	{
+		"gameId": 50975,
+		"cover": 48782,
+		"name": "Storybook Workshop",
+		"release_dates": [
+			96888
+		],
+		"summary": "Storybook Workshop immerses kids and their parents in 16 classic children's fairy tales and fables and many other exciting features. Through the use of the included USB microphone, you can read along, record and play back readings of your favorite stories, including the most beloved tales from Hans Christian Andersen, the Brothers Grimm, Aesop and around the world. Storybook Workshop's unique microphone functionality will even magically change your voice to sound like the characters in the stories, including fairies, giants and robots! Continue the fun with your children in a lively sing-along room where nursery rhymes come to life right in front your children's eyes, and watch as they learn rhythm, language, numbers and shapes in the exciting Play & Learn mode. Your kids can track their progress by using a virtual sticker pad, which will get pre-schoolers excited and motivated to continue to read and complete the stories.",
+		"url": "https://www.igdb.com/games/storybook-workshop"
+	},
+	{
+		"gameId": 85450,
+		"name": "Transformers Prime: The Game",
+		"url": "https://www.igdb.com/games/transformers-prime-the-game"
+	}
+]

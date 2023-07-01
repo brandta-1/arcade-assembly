@@ -1,17 +1,24 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiceD6 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Home.css';
 
 const Home = () => {
+  const navigate = useNavigate(); // <-- Initialize useNavigate hook
+  
+  const handleSignupClick = () => {
+    navigate('/signup'); // <-- Navigate to /signup route when Signup button is clicked
+  };
+
   return (
-    <Container className="home-container">
+    <Container>
       <Row>
-        <Col md={6}>
+        <Col md={6} className="align-self-center">
           <h1>Website Title*</h1>
         </Col>
-        <Col md={6}>
+        <Col md={6} className="align-self-center">
           <p>Brief Description of the website*</p>
         </Col>
       </Row>
@@ -34,7 +41,7 @@ const Home = () => {
       <Row>
         <Col md={12} className="text-center">
           <h3>New to WebsiteName? Signup Now!</h3>
-          <button>Signup</button>
+          <button onClick={handleSignupClick}>Signup</button> {/* <-- Added onClick handler */}
         </Col>
       </Row>
       <Row>

@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGamepad } from '@fortawesome/free-solid-svg-icons';
+import { faGamepad, faBars } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Header.css';
 
 const Header = () => {
-  return (
-    <Container fluid className="header-container">
-      <Row>
-        <Col md={6}>
-          <Link to="/">
-            <FontAwesomeIcon icon={faGamepad} size="2x" className="logo" />
-          </Link>
-        </Col>
-        <Col md={6} className="text-right">
-          <Link to="/login" className="nav-link">Login</Link>
-          <Link to="/profile" className="nav-link">Profile</Link>
-          <Link to="/player-search" className="nav-link">Player Search</Link>
-        </Col>
-      </Row>
-    </Container>
-  );
+    const [showLinks, setShowLinks] = useState(false);
+
+    const toggleLinks = () => {
+        setShowLinks(!showLinks);
+    };
+
+    return (
+        <Container fluid className="header-container">
+            <Row>
+                <Col md={12} className="nav-container">
+                    <Link to="/" className="logo-container">
+                        <FontAwesomeIcon icon={faGamepad} size="2x" className="logo" />
+                    </Link>
+                    <div className="menu-container">
+                        <FontAwesomeIcon icon={faBars} size="2x" className="menu-icon" onClick={toggleLinks} />
+                        <div className={showLinks ? "links-container active" : "links-container"}>
+                            <Link to="/login" className="nav-link">Login</Link>
+                            <Link to="/profile" className="nav-link">Profile</Link>
+                            <Link to="/player-search" className="nav-link">Player Search</Link>
+                        </div>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 export default Header;

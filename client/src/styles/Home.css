@@ -1,39 +1,42 @@
 /* Home styles */
-.home-container {
-    background-color: rgb(53, 53, 53);
-    padding: 40px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-  }
-  
-  .hexagon {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-  
-  .hexagon-icon {
-    color: green;
-  }
-  
-  .hexagon p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  button {
-    background-color: forestgreen;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: green;
-  }
-  
+
+.hexagon {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.hexagon-icon {
+  color: green;
+}
+
+.hexagon p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  background-color: forestgreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: green;
+}
+
+.align-self-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Add some padding around the content */
+.container {
+  padding: 30px 15px;
+}

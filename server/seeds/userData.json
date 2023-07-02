@@ -5,7 +5,7 @@
         "email": "Cammy@gmail.com",
         "password": "password12345",
         "gamertag": "BreathingAmoeba",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/IMG-4570.jpg?updatedAt=1688303355064"
     },
     {
         "firstName": "Dragonfly",
@@ -13,7 +13,7 @@
         "email": "DFly@gmail.com",
         "password": "password12345",
         "gamertag": "Dragonflys Dojo",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
     },
     {
         "firstName": "Luke",
@@ -21,7 +21,7 @@
         "email": "luke@gmail.com",
         "password": "password12345",
         "gamertag": "JediMaster",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/luke.png?updatedAt=1688226991928"
       },
       {
         "firstName": "Hermione",
@@ -29,7 +29,7 @@
         "email": "hermione@gmail.com",
         "password": "password12345",
         "gamertag": "MagicWitch",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar5.png?updatedAt=1688305286440"
       },
       {
         "firstName": "Walter",
@@ -37,7 +37,7 @@
         "email": "walter@gmail.com",
         "password": "password12345",
         "gamertag": "Heisenberg",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/walter.png?updatedAt=1688226991618"
       },
       {
         "firstName": "Frodo",
@@ -45,7 +45,7 @@
         "email": "frodo@gmail.com",
         "password": "password12345",
         "gamertag": "RingBearer",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/frodo.png?updatedAt=1688226991833"
       },
       {
         "firstName": "Leia",
@@ -53,7 +53,7 @@
         "email": "leia@gmail.com",
         "password": "password12345",
         "gamertag": "RebelPrincess",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/leia.png?updatedAt=1688226991709"
       },
       {
         "firstName": "Gandalf",
@@ -61,7 +61,7 @@
         "email": "gandalf@gmail.com",
         "password": "password12345",
         "gamertag": "WizardSage",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/gandalf.png?updatedAt=1688226993074"
       },
       {
         "firstName": "Jesse",
@@ -69,7 +69,7 @@
         "email": "jesse@gmail.com",
         "password": "password12345",
         "gamertag": "YoBitch",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/jessePinkman.png?updatedAt=1688226991520"
       },
       {
         "firstName": "Obi-Wan",
@@ -77,7 +77,7 @@
         "email": "obiwan@gmail.com",
         "password": "password12345",
         "gamertag": "JediKnight",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/obiWan.png?updatedAt=1688226991718"
       },
       {
         "firstName": "Aragorn",
@@ -85,7 +85,7 @@
         "email": "aragorn@gmail.com",
         "password": "password12345",
         "gamertag": "KingOfGondor",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/aragonElessar.png?updatedAt=1688226991502"
       },
       {
         "firstName": "Saul",
@@ -93,7 +93,7 @@
         "email": "saul@gmail.com",
         "password": "password12345",
         "gamertag": "CriminalLawyer",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/saulGoodman.png?updatedAt=1688226991500"
       },
       {
         "firstName": "Han",
@@ -101,7 +101,7 @@
         "email": "han@gmail.com",
         "password": "password12345",
         "gamertag": "Smuggler",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar2.png?updatedAt=1688305286483"
       },
       {
         "firstName": "Samwise",
@@ -109,7 +109,7 @@
         "email": "samwise@gmail.com",
         "password": "password12345",
         "gamertag": "LoyalFriend",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/Samwise_Gamgee_playing_video_games.jpg?updatedAt=1688226994546"
       },
       {
         "firstName": "Mace",
@@ -117,7 +117,7 @@
         "email": "mace@gmail.com",
         "password": "password12345",
         "gamertag": "JediMaster",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552"
       },
       {
         "firstName": "Gimli",
@@ -125,7 +125,7 @@
         "email": "gimli@gmail.com",
         "password": "password12345",
         "gamertag": "DwarvenAxe",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455"
       },
       {
         "firstName": "Skyler",
@@ -133,7 +133,7 @@
         "email": "skyler@gmail.com",
         "password": "password12345",
         "gamertag": "ConcernedWife",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar7.png?updatedAt=1688305286447"
       },
       {
         "firstName": "Rey",
@@ -141,7 +141,7 @@
         "email": "rey@gmail.com",
         "password": "password12345",
         "gamertag": "ForceBearer",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/Rey-Skywalkder-playing-video-games.png?updatedAt=1688226994414"
       },
       {
         "firstName": "Legolas",
@@ -149,7 +149,7 @@
         "email": "legolas@gmail.com",
         "password": "password12345",
         "gamertag": "ElvenArcher",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455"
       },
       {
         "firstName": "Gus",
@@ -157,7 +157,7 @@
         "email": "gus@gmail.com",
         "password": "password12345",
         "gamertag": "LosPollosHermanos",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
       },
       {
         "firstName": "Darth",
@@ -165,7 +165,7 @@
         "email": "vader@gmail.com",
         "password": "password12345",
         "gamertag": "DarkLord",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
       },
       {
         "firstName": "Bilbo",
@@ -173,6 +173,6 @@
         "email": "bilbo@gmail.com",
         "password": "password12345",
         "gamertag": "AdventurousHobbit",
-        "avatarURL": "abc"
+        "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552"
       }
 ]

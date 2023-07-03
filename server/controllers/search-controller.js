@@ -2,9 +2,8 @@ require('dotenv').config();
 
 function clean(d) {
     d.forEach(i => {
-        i.release_dates = i.release_dates[0].date;
         i.cover = i.cover.url;
-        delete i.id;
+        delete Object.assign(i, { date: i.first_release_date })['first_release_date'];
     });
     return d;
 }
@@ -22,7 +21,7 @@ module.exports = {
                         'Client-ID': `${process.env.CLIENT_ID}`,
                         'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`,
                     },
-                    body: `search "${req.params.query}"; f cover.url, release_dates.date, name; where game_modes = (2);`,
+                    body: `search "${req.params.query}"; f cover.url, first_release_date, name; where game_modes = (2);`,
                     data: " "
                 }
             ).then(async (r) => {

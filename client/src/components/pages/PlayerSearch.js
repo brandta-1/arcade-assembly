@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import { searchGames } from '../../utils/API';
 import { Form, Button, Col, Row } from 'react-bootstrap';
@@ -25,10 +26,16 @@ const PlayerSearch = () => {
     }
   }
 
+
+
+
+const PlayerSearch = () => {
+
   return (
     <div>
       <h2>Player Search Page</h2>
       <p>This is the Player Search page.</p>
+
       <h1>game search test: search a game, then check the console!</h1>
       <Form onSubmit={handleFormSubmit}>
         <Row>

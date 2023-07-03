@@ -19,7 +19,7 @@ const Home = () => {
           <h1>Website Title*</h1>
         </Col>
         <Col md={6} className="align-self-center">
-          <p>Brief Description of thbsite*</p>
+          <p>Brief Description of the website*</p>
         </Col>
       </Row>
       <Row>

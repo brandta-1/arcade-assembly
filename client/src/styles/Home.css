@@ -1,20 +1,35 @@
 /* Home styles */
 
-.hexagon {
+.shield-wrapper {
   position: relative;
-  text-align: center;
-  color: white;
+  display: inline-block;
+  margin-bottom: 100px;
 }
 
-.hexagon-icon {
-  color: green;
+.shield-icon {
+  font-size: 140px; 
+  color: forestgreen; 
 }
 
-.hexagon p {
+.shield-text {
   position: absolute;
-  top: 50%;
+  top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 18px; 
+  font-weight: 600;
+}
+
+.shield-text p {
+border-bottom: 2px solid white;
+padding-bottom: 5px;
+margin-bottom: 8px;
+}
+
+.shield-text span {
+  color: rgb(247, 243, 31);
 }
 
 button {
@@ -29,14 +44,4 @@ button {
 
 button:hover {
   background-color: green;
-}
-
-.align-self-center {
-  display: flex;
-  justify-content: center;
-}
-
-/* Add some padding around the content */
-.container {
-  padding: 30px 15px;
 }

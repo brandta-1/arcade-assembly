@@ -4,26 +4,27 @@ import Header from './components/pages/Header';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Profile from './components/pages/Profile';
-import PlayerSearch from './components/pages/PlayerSearch';
-import Signup from './components/pages/Signup'; // <-- Import Signup component
+import GameSearch from './components/pages/GameSearch';
+import Signup from './components/pages/Signup';
 import Footer from './components/pages/Footer';
-import { Container } from 'react-bootstrap';
 import './styles/App.css';
 
 function App() {
   return (
     <Router>
-      <Container fluid className="app-container">
+      <div className="app-container">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/player-search" element={<PlayerSearch />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
+        <div className="content-area">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/game-search" element={<GameSearch />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </div>
         <Footer />
-      </Container>
+      </div>
     </Router>
   );
 }

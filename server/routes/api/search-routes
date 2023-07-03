@@ -1,0 +1,8 @@
+const router = require('express').Router();
+const {searchGames} = require('../../controllers/search-controller');
+
+router.route('/:query').get(searchGames);
+
+module.exports = router;
+
+

@@ -2,12 +2,13 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiceD6 } from '@fortawesome/free-solid-svg-icons';
+import { faShield } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Home.css';
 
 const Home = () => {
+
   const navigate = useNavigate(); // <-- Initialize useNavigate hook
-  
+
   const handleSignupClick = () => {
     navigate('/signup'); // <-- Navigate to /signup route when Signup button is clicked
   };
@@ -15,26 +16,34 @@ const Home = () => {
   return (
     <Container>
       <Row>
-        <Col md={6} className="align-self-center">
+        <Col md={6} className="align-self-center text-center">
           <h1>Website Title*</h1>
         </Col>
-        <Col md={6} className="align-self-center">
+        <Col md={6} className="align-self-center text-center">
           <p>Brief Description of the website*</p>
         </Col>
       </Row>
       <Row>
         <Col md={6} className="text-center">
           <div className="hexagon">
-            <FontAwesomeIcon icon={faDiceD6} size="6x" className="hexagon-icon" />
-            <p>Total Games</p>
-            <p>300</p>
+            <div className="shield-wrapper">
+              <FontAwesomeIcon icon={faShield} size="lg" className="shield-icon" />
+              <div className="shield-text">
+                <p>Total Games</p>
+                <span>300</span>
+              </div>
+            </div>
           </div>
         </Col>
         <Col md={6} className="text-center">
           <div className="hexagon">
-            <FontAwesomeIcon icon={faDiceD6} size="6x" className="hexagon-icon" />
-            <p>Total Players</p>
-            <p>4</p>
+            <div className="shield-wrapper">
+              <FontAwesomeIcon icon={faShield} size="lg" className="shield-icon" />
+              <div className="shield-text">
+                <p>Total Players</p>
+                <span>4</span>
+              </div>
+            </div>
           </div>
         </Col>
       </Row>
@@ -45,10 +54,10 @@ const Home = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={6}>
+        <Col md={6} className="text-center">
           <h2>Our Goal</h2>
         </Col>
-        <Col md={6}>
+        <Col md={6} className="text-center">
           <p>Description for our goal.</p>
         </Col>
       </Row>

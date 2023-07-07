@@ -8,6 +8,7 @@ import GameSearch from './components/pages/GameSearch';
 import Signup from './components/pages/Signup';
 import Footer from './components/pages/Footer';
 import './styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

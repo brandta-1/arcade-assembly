@@ -1,0 +1,36 @@
+.game-search-input {
+    margin-bottom: 20px;
+}
+
+.game-tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.game-tab-head {
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.game-tab-head.active-tab {
+    font-weight: bold;
+}
+
+.game-tab-bodies {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-tab-body {
+    display: none;
+}
+
+.game-tab-body img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.game-tab-body.show-tab {
+    display: block;
+}

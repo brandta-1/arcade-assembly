@@ -8,6 +8,12 @@ const lobbySchema = new Schema(
             ref: 'Game'
         },
 
+        owner:
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+
         players: [
             {
                 type: Schema.Types.ObjectId,

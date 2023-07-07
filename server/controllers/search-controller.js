@@ -12,6 +12,7 @@ module.exports = {
 
     async searchGames(req, res) {
         try {
+            console.log("hello")
             let result = await fetch(
                 "https://api.igdb.com/v4/games",
                 {
@@ -26,6 +27,7 @@ module.exports = {
                 }
             ).then(async (r) => {
                 let data = await r.json();
+                console.log(data);
                 return clean(data);
             });
             res.json(result);

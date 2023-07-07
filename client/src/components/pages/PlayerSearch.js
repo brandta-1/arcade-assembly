@@ -26,11 +26,6 @@ const PlayerSearch = () => {
     }
   }
 
-
-
-
-const PlayerSearch = () => {
-
   return (
     <div>
       <h2>Player Search Page</h2>

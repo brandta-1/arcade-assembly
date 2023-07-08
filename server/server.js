@@ -18,11 +18,13 @@ const server = new ApolloServer({ typeDefs, resolvers, context: authMiddleware }
 app.use(
     express.urlencoded({ extended: true }),
     express.json(),
+    //here is a list of cross origins that are valid, its valid to enable CORS, its just us
+    //wait until after deployment to mess with CORS, also look into HELMET for express
     cors({
-        origin: [
-            HOST,
-            'https://studio.apollographql.com'
-        ]
+         origin: [
+             HOST,
+             'https://studio.apollographql.com'
+         ]
     }),
     routes
 );
@@ -31,9 +33,9 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+ app.get('/*', (req, res) => {
+     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+ });
 
 const startApolloServer = async () => {
     await server.start();

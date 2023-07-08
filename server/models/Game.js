@@ -2,15 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema(
     {
-        gameID: {
-            //this will be just a string since its coming from the API
-            type: String,
-            required: true,
-        },
         cover: {
             type: String,
         },
-        name: {
+        title: {
             type: String,
             required: true,
         },

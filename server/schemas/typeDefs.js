@@ -12,8 +12,9 @@ const typeDefs = gql`
     }
 
     type Game {
-        gameId: String!
+        _id: ID!
         cover: String
+        title: String!
         date: Date
     }
     
@@ -35,9 +36,10 @@ const typeDefs = gql`
     type Query {
         me: User
         # this will be used forEach user Id inside of a lobby
-       #  getUsers(id: ID!): User
-        # given a game id or a player-username, retreive the lobbies
-        # getLobbies(source: String!): [Lobby]!
+        
+        # given a game title, retreive the lobbies
+        # title is used, rather than id, bc the input will be db-agnostic
+        getGameLobbies(gameTitle: String): [Lobby]
     }
 
     type Mutation {
@@ -46,9 +48,14 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
+    #add a game to our DB if the user creates a lobby for it
+    addGame(cover: String, title: String!, date: Date): Game
+
     #given the ID of a lobby, and a user, add and remove them
-    # join(lobbyId: ID!, userId: ID!): Lobby
-    # leave(lobbyId: ID!, userId: ID!): Lobby
+    createLobby(ownerId: ID!, gameId: String!): Lobby
+    join(lobbyId: ID!, userId: ID!): Lobby
+    leave(lobbyId: ID!, userId: ID!): Lobby
+    promote(lobbyId: ID!, userId: ID!): Lobby
     }
 `;
 

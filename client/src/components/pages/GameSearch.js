@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { searchGames } from '../../utils/API';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/GameSearch.css';
 
 const GameSearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
+    const [message, setMessage] = useState(''); 
 
     useEffect(() => {
         if (searchTerm.length > 1) {
             fetchGames(searchTerm);
         } else {
             setGames([]);
+            setMessage(''); 
         }
     }, [searchTerm]);
 
     const fetchGames = async (searchTerm) => {
         const gameData = await searchGames(searchTerm);
-        setGames(gameData);
+        if (Array.isArray(gameData)) {
+            setGames(gameData);
+            setMessage(''); 
+        } else {
+            console.error('Error: Expected an array but received', gameData);
+            setGames([]);
+        }
     };
 
     const handleInputChange = (event) => {
@@ -28,42 +39,58 @@ const GameSearch = () => {
         setActiveTab(index + 1);
     };
 
+    const handleSearchClick = async () => {
+        if (!searchTerm) {
+            setMessage('Please enter a search term');
+            return;
+        }
+
+        const gameData = await searchGames(searchTerm);
+        if (!gameData || !Array.isArray(gameData) || gameData.length === 0) {
+            setMessage('No results found');
+            setGames([]);
+            return;
+        }
+
+        setGames(gameData);
+        setMessage(''); 
+    };
+
     return (
-        <div>
-            <h1>Game Search Page</h1>
-            <input
-                type="text"
-                placeholder="Search for a game..."
-                value={searchTerm}
-                onChange={handleInputChange}
-                className="game-search-input"
-            />
-
-            <div className="game-tabs">
-                {games.map((game, index) => (
-                    <div
-                        key={index}
-                        className={`game-tab-head ${activeTab === index + 1 ? 'active-tab' : ''}`}
-                        onClick={() => handleTabClick(index)}
-                    >
-                        <p>{game.name}</p>
+        <Container className="app-header-search">
+            <Row className="justify-content-md-center">
+                <Col md={12}>
+                    <h1 className="game-search-title">Search a Game</h1>
+                    <div className="form-control">
+                        <input
+                            type="text"
+                            placeholder="Search for a game..."
+                            value={searchTerm}
+                            onChange={handleInputChange}
+                            className="search-input search-input-shifted"
+                        />
+                        <div className="icon-container" onClick={handleSearchClick}>
+                            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                        </div>
                     </div>
-                ))}
-            </div>
 
-            <div className="game-tab-bodies">
-                {games.map((game, index) => (
-                    <div
-                        key={index}
-                        className={`game-tab-body ${activeTab === index + 1 ? 'show-tab' : ''}`}
-                    >
-                        <img src={game.cover} alt={game.name} />
-                        <p>ID: {game.id}</p>
-                        <p>Name: {game.name}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
+                    {message && <p>{message}</p>} 
+
+                    <ListGroup className="search-list">
+                        {games.map((game, index) => (
+                            <ListGroup.Item
+                                key={index}
+                                className={`search-list-item ${activeTab === index + 1 ? 'active-tab' : ''}`}
+                                onClick={() => handleTabClick(index)}
+                            >
+                                <img src={game.cover} alt={game.name} />
+                                <p>{game.name}</p>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

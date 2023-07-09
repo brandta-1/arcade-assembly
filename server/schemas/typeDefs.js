@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
     scalar Date
-
+    #TODO: profile pic
     type User {
         _id: ID!
         username: String!
@@ -22,9 +22,10 @@ const typeDefs = gql`
     
     type Lobby{
         _id: ID!
-        game: [Game]
+        game: Game
         owner: User
         players: [User]
+        limit: Int
     }
 
     type Auth {
@@ -39,13 +40,14 @@ const typeDefs = gql`
         # see resolvers.js for query comments
         me: User
         getUser(username: String): User
-        getGameLobbies(gameName: String): [Lobby]
+        getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String): [Lobby]
     }
 
     type Mutation {
 
-    #self explanatory    
+    #self explanatory
+    #TODO profile pic    
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
@@ -53,7 +55,7 @@ const typeDefs = gql`
     addGame(igdb: String!, cover: String, name: String!, date: Date): Game
 
     #given the ID of a lobby, and a user, add and remove them
-    createLobby(gameId: ID!): Lobby
+    createLobby(gameId: ID!, userId: ID): Lobby
     join(lobbyId: ID!, userId: ID!): Lobby
     leave(lobbyId: ID!, userId: ID!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby

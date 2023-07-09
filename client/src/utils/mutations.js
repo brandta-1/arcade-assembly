@@ -26,3 +26,23 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const CREATE_LOBBY = gql`
+
+mutation CreateLobby($lobbyId: ID!, $userId: ID!) {
+  join(lobbyId: $lobbyId, userId: $userId) {
+    _id
+    game {
+      cover
+      name
+    }
+    owner {
+      username
+    }
+    players {
+      username
+    }
+  }
+}
+
+`;

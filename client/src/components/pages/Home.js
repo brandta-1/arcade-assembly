@@ -3,15 +3,29 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShield } from '@fortawesome/free-solid-svg-icons';
+import {useQuery} from '@apollo/client';
+import {GET_USER} from '../../utils/queries';
 import '../../styles/Home.css';
 
 const Home = () => {
+
+  const { loading, data } = useQuery(GET_USER, {
+    variables: { username: "testUser333"}
+  });
+
+  const userData = data?.getUser || {};
 
   const navigate = useNavigate(); // <-- Initialize useNavigate hook
 
   const handleSignupClick = () => {
     navigate('/signup'); // <-- Navigate to /signup route when Signup button is clicked
   };
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
+
+  console.log(userData);
 
   return (
     <Container>

@@ -13,22 +13,27 @@ const resolvers = {
         //get any user that isnt the logged-in user
         //getUser and getUserLobbies will be called whenever you go to a user's profile page
         getUser: async (parent, { username }) => {
-            return await User.findOne({ username: username });
+            const user = await User.findOne({ username });
+            console.log(user);
+            console.log(user.lobbies[0].game)
+            return user;
         },
 
         //TODO: getUserLobbies and getGameLobbies could be rewritten into one getLobbies query
 
         getUserLobbies: async (parent, { username }) => {
             //same logic from getGameLobbies query, but for users
-            const user = await User.findOne({ username: username });
+            const user = await User.findOne({ username });
             if (user) {
                 return await lobbyArray(user);
             }
         },
 
-        getGameLobbies: async (parent, { gameName }) => {
+        getGameLobbies: async (parent, { igdb }) => {
             //check db for game, returns an empty array if the game is not in our db
-            const game = await Game.find({ name: gameName });
+            const game = await Game.find({ igdb });
+
+            console.log(game[0].lobbies);
 
             //if the game is in our db, retreive its lobbies and return them in an array
             if (game.length) {
@@ -43,6 +48,7 @@ const resolvers = {
     Mutation: {
 
         //addUser will be called when the user signs up, see HW21
+        //TODO profile pic
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
@@ -70,6 +76,7 @@ const resolvers = {
 
         //addGame will be called whenever the user clicks on a game-search result,
         //addGame checks if a game is in our DB, and if not, adds it to our DB
+        //addGame mutation will return the games _id, this _id will be used in createLobby
         addGame: async (parent, { igdb, cover, name, date }) => {
             try {
                 const isGame = await Game.findOne({ igdb })
@@ -86,7 +93,7 @@ const resolvers = {
                     return game;
                 }
 
-                return null;
+                return isGame;
             } catch (err) {
                 console.log(err);
                 return err;
@@ -98,15 +105,19 @@ const resolvers = {
         //below notes apply to any mutation that uses context:
         //for the testing version, add "userId" as an argument and replce the context id,
         // you will also need to add that as an argument in the typeDefs
-        createLobby: async (parent, { gameId }, context) => {
+        createLobby: async (parent, { gameId, userId, limit }) => {
             //try to create a lobby with a game and user ID
             //the owner has their Id set, and also added to the list of players
+            const theId = userId;
             try {
                 const lobby = await Lobby.create({
                     game: gameId,
-                    owner: context.user._id,
-                    players: [context.user._id]
+                    owner: theId,
+                    players: [theId],
+                    limit: limit
                 });
+
+
 
                 if (lobby) {
                     const game = await Game.findOneAndUpdate(
@@ -116,13 +127,19 @@ const resolvers = {
                     );
 
                     const user = await User.findOneAndUpdate(
-                        { _id: context.user._id },
+                        { _id: theId },
                         { $push: { lobbies: lobby._id } },
                         { new: true }
                     );
                 }
 
-                return lobby;
+                const lobbyPop = await Lobby.findById(lobby._id)
+                    .populate('game')
+                    .populate('owner', 'username')
+                    .populate('players', 'username')
+                    .populate('limit');
+
+                return lobbyPop;
             } catch (err) {
                 console.log(err);
                 return err;
@@ -132,29 +149,40 @@ const resolvers = {
         //join will be called whenever the user joins another persons lobby
         //the lobbyId variable will be available bc the lobbies should be rendered using getGameLobbies or getPlayerLobbies
         //see prior notes for context parameter
-        join: async (parent, { lobbyId }, context) => {
+        //WILL RETURN NULL IF ALREADY JOINED
+        join: async (parent, { lobbyId, userId }) => {
             //try to find the current lobby, and let a player join
 
             try {
-                const lobby = await Lobby.findOne({ _id: lobbyId });
+                let lobby = await Lobby.findOne({ _id: lobbyId })
+                    .populate('game', '-lobbies')
+                    .populate('owner', 'username')
+                    .populate('players', 'username');
 
                 //if the player is already in, return null
-                if (lobby.players.includes(context.user._id)) {
+                if (lobby.players.filter(i => i._id == userId).length > 0) {
                     console.log("already joined")
                     return null;
                 }
 
                 //add the user to the lobby's data
-                lobby.players.addToSet({ _id: context.user._id });
+                lobby.players.addToSet({ _id: userId });
                 await lobby.save();
                 console.log("player joined");
 
                 //add the lobby to the user's data
                 const user = await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { _id: userId },
                     { $push: { lobbies: lobby._id } },
                     { new: true }
                 );
+
+                //misunderstanding of mongoose, but this works
+                console.log(lobby.players.pop());
+                lobby.players.push({
+                    _id: userId,
+                    username: user.username
+                })
 
                 return lobby;
             } catch (err) {
@@ -170,6 +198,27 @@ const resolvers = {
         leave: async (parent, { lobbyId, userId }) => {
             try {
 
+                //remove the user from the lobby
+                const lobby = await Lobby.findOneAndUpdate(
+                    { _id: lobbyId },
+                    { $pull: { players: userId } },
+                    { new: true }
+                ).populate('game', '-lobbies')
+                    .populate('owner', 'username')
+                    .populate('players', 'username');;
+
+                console.log(lobby);
+
+                //remove the lobby from the user
+                const user = await User.findOneAndUpdate(
+                    { _id: userId },
+                    { $pull: { lobbies: lobbyId } },
+                    { new: true }
+                );
+
+                //TODO: if that was the last person in the lobby, delete it, and remove it from its games
+
+                /*
                 let lobby = await Lobby.findById(lobbyId);
 
                 //remove the player's ID from the player array
@@ -182,12 +231,16 @@ const resolvers = {
                 user.lobbies.pull({ _id: lobbyId });
                 await user.save();
 
+                //if that was the only player in the lobby, then delete the lobby
+
                 //if that player was the owner, a new owner is needed
                 if (lobby.owner.toHexString() == userId) {
                     //the now-oldest member is the new leader
                     lobby.set({ owner: lobby.players[0].toHexString() });
                     await lobby.save();
                 }
+                */
+
                 return lobby;
             } catch (err) {
                 console.log(err);
@@ -199,6 +252,7 @@ const resolvers = {
         promote: async (parent, { lobbyId, userId }) => {
             console.log(userId);
             try {
+
                 const lobby = await Lobby.findOneAndUpdate(
                     { _id: lobbyId },
                     { owner: userId },
@@ -216,15 +270,17 @@ const resolvers = {
 
 async function lobbyArray(x) {
 
-    let lobbies = await Promise.all(x.lobbies.map(async i =>
+    console.log(x.lobbies)
 
+    let lobbies = await Promise.all(x.lobbies.map(async i =>
+        // console.log(i)
         await Lobby.findById(i.toHexString())
-            .populate('game', 'name')
+            .populate('game', 'name cover')
             .populate('owner', 'username')
             .populate('players', 'username')
     ));
 
-    console.log(lobbies);
+
     return lobbies
 }
 

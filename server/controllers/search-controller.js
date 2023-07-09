@@ -2,8 +2,11 @@ require('dotenv').config();
 
 function clean(d) {
     d.forEach(i => {
+        console.log(i.id.toString());
         i.cover = i.cover.url;
-        delete Object.assign(i, { date: i.first_release_date })['first_release_date'];
+        Object.assign(i, { date: i.first_release_date, igdb: i.id.toString() })
+        delete i['first_release_date'];
+        delete i['id'];
     });
     return d;
 }
@@ -12,7 +15,6 @@ module.exports = {
 
     async searchGames(req, res) {
         try {
-            console.log("hello")
             let result = await fetch(
                 "https://api.igdb.com/v4/games",
                 {

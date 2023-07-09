@@ -13,8 +13,10 @@ const typeDefs = gql`
 
     type Game {
         _id: ID!
+        igdb: String!
         cover: String
-        title: String!
+        name: String!
+        lobbies: [Lobby]
         date: Date
     }
     
@@ -34,12 +36,11 @@ const typeDefs = gql`
     # need to deploy by EOD Sunday, that gives 3 days for deployment debug + bonus feature
 
     type Query {
+        # see resolvers.js for query comments
         me: User
-        # this will be used forEach user Id inside of a lobby
-        
-        # given a game title, retreive the lobbies
-        # title is used, rather than id, bc the input will be db-agnostic
-        getGameLobbies(gameTitle: String): [Lobby]
+        getUser(username: String): User
+        getGameLobbies(gameName: String): [Lobby]
+        getUserLobbies(username: String): [Lobby]
     }
 
     type Mutation {
@@ -49,10 +50,10 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     #add a game to our DB if the user creates a lobby for it
-    addGame(cover: String, title: String!, date: Date): Game
+    addGame(igdb: String!, cover: String, name: String!, date: Date): Game
 
     #given the ID of a lobby, and a user, add and remove them
-    createLobby(ownerId: ID!, gameId: String!): Lobby
+    createLobby(gameId: ID!): Lobby
     join(lobbyId: ID!, userId: ID!): Lobby
     leave(lobbyId: ID!, userId: ID!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby

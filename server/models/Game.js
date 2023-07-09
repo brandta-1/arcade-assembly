@@ -2,10 +2,14 @@ const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema(
     {
+        igdb: {
+            type: String,
+            required: true,
+        },
         cover: {
             type: String,
         },
-        title: {
+        name: {
             type: String,
             required: true,
         },

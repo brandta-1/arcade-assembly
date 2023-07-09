@@ -19,9 +19,26 @@ const lobbySchema = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: 'User'
             }
-        ]
-    }
+        ],
+
+        limit: {
+            type: Number,
+            min: 2,
+            max: 64
+        },
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+    },
 );
+
+lobbySchema
+    .virtual('playerCount')
+    .get(function () {
+        return this.players.length;
+    });
 
 const Lobby = model('Lobby', lobbySchema);
 

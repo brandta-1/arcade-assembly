@@ -3,6 +3,7 @@ import { searchGames } from '../../utils/API';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'; 
 import '../../styles/GameSearch.css';
 
 const GameSearch = () => {
@@ -10,6 +11,8 @@ const GameSearch = () => {
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
     const [message, setMessage] = useState(''); 
+
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         if (searchTerm.length > 1) {
@@ -37,6 +40,8 @@ const GameSearch = () => {
 
     const handleTabClick = (index) => {
         setActiveTab(index + 1);
+        // Navigate to the lobby with game data
+        navigate(`/lobby/${games[index].id}`, { state: { game: games[index] } });
     };
 
     const handleSearchClick = async () => {
@@ -54,6 +59,7 @@ const GameSearch = () => {
 
         setGames(gameData);
         setMessage(''); 
+        if (games.length > 0) navigate(`/lobby/${games[0].id}`);
     };
 
     return (

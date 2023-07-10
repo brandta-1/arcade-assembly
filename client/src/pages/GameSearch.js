@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { searchGames } from '../../utils/API';
+import { searchGames } from '../utils/API';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom'; 
-import '../../styles/GameSearch.css';
+import '../styles/GameSearch.css';
 
 const GameSearch = () => {
+
+
     const [searchTerm, setSearchTerm] = useState('');
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
@@ -41,7 +43,7 @@ const GameSearch = () => {
     const handleTabClick = (index) => {
         setActiveTab(index + 1);
         // Navigate to the lobby with game data
-        navigate(`/lobby/${games[index].id}`, { state: { game: games[index] } });
+        navigate(`/game/${games[index].id}`, { state: { game: games[index] } });
     };
 
     const handleSearchClick = async () => {
@@ -60,7 +62,7 @@ const GameSearch = () => {
         setGames(gameData);
         setMessage(''); 
         // Navigate to the lobby of the first game in the search results
-        navigate(`/lobby/${gameData[0].id}`, { state: { game: gameData[0] } });
+        navigate(`/game/${gameData[0].id}`, { state: { game: gameData[0] } });
     };
 
     return (

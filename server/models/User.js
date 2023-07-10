@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const lobbySchema = require('./Lobby');
-
 const userSchema = new Schema(
     {
         username: {
@@ -18,7 +16,7 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            select: false,
+            // select: false,
             required: true,
         },
 
@@ -42,6 +40,8 @@ userSchema.pre('save', async function (next) {
   });
 
   userSchema.methods.isCorrectPassword = async function (password) {
+    console.log(password);
+    console.log(this.pass)
     return bcrypt.compare(password, this.password);
   };
 

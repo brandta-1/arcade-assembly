@@ -1,14 +1,15 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/pages/Header';
-import Home from './components/pages/Home';
-import Login from './components/pages/Login';
-import Profile from './components/pages/Profile';
-import GameSearch from './components/pages/GameSearch';
-import Lobby from './components/pages/Lobby'
-import Signup from './components/pages/Signup';
-import Footer from './components/pages/Footer';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import GameSearch from './pages/GameSearch';
+import Game from './pages/Game';
+import Lobby from './components/Lobby'
+import Signup from './pages/Signup';
+import Footer from './components/Footer';
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -33,7 +34,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/game-search" element={<GameSearch />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/lobby/:gameId" element={<Lobby />} />
+            <Route path="/game/:gameId" element={<Game />} />
           </Routes>
         </div>
         <Footer />

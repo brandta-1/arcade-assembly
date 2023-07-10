@@ -9,6 +9,9 @@ const typeDefs = gql`
         username: String!
         email: String!
         lobbies: [ID]
+        firstName: String
+        lastName: String
+        avatarURL: String
     }
 
     type Game {

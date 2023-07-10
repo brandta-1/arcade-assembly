@@ -14,7 +14,9 @@ const resolvers = {
         //getUser and getUserLobbies will be called whenever you go to a user's profile page
         getUser: async (parent, { username }) => {
             const user = await User.findOne({ username });
+
             console.log(user);
+
             return user;
         },
 

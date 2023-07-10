@@ -19,6 +19,10 @@ query GetUser($username: String) {
   getUser(username: $username) {
     _id
     username
+    firstName
+    lastName
+    avatarURL
+    email
   }
 }
 

@@ -8,6 +8,19 @@ const userSchema = new Schema(
             required: true,
             unique: true,
         },
+
+        firstName: {
+            type: String
+        },
+
+        lastName: {
+            type: String
+        },
+
+        avatarURL: {
+            type: String
+        },
+
         email: {
             type: String,
             required: true,
@@ -18,6 +31,7 @@ const userSchema = new Schema(
             type: String,
             // select: false,
             required: true,
+            min: 7,
         },
 
         lobbies: [
@@ -41,7 +55,7 @@ userSchema.pre('save', async function (next) {
 
   userSchema.methods.isCorrectPassword = async function (password) {
     console.log(password);
-    console.log(this.pass)
+    console.log(this.password);
     return bcrypt.compare(password, this.password);
   };
 

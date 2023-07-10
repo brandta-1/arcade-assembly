@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { ADD_USER } from '../../utils/mutations';
+import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import '../../styles/Login.css';
 
 const Login = () => {
-
-  const [AddUser] = useMutation(ADD_USER);
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [loginUser] = useMutation(LOGIN_USER);
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -17,9 +17,9 @@ const Login = () => {
   };
 
   const handleFormSubmit = async (event) => {
-
     event.preventDefault();
 
+    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -27,11 +27,14 @@ const Login = () => {
     }
 
     try {
-      const { data } = await AddUser({
+      //usemutation function, send the form data
+      const {data} = await loginUser({
         variables: { ...userFormData }
       });
 
-      const { token } = await data.addUser;
+      //successful mutation returns a token, store that in local storage, and redirect to homepage
+      const { token } = await data.login;
+      console.log(token);
       Auth.login(token);
 
     } catch (err) {
@@ -50,53 +53,45 @@ const Login = () => {
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your signup!
+          Uh Oh! Something went wrong with your Login credentials!
         </Alert>
-
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='username'>Username</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your username'
-            name='username'
-            onChange={handleInputChange}
-            value={userFormData.username}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Your email address'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
+        <Form.Group className='m-4 p-1'>
+          <div className="text-center">
+            <Form.Label htmlFor='email'>EMAIL</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter Email you Signed up With'
+              name='email'
+              onChange={handleInputChange}
+              value={userFormData.email}
+              required
+            />
+          </div>
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
+        <Form.Group className='m-4 p-1'>
+        <div className="text-center">
+            <Form.Label htmlFor='password'>PASSWORD</Form.Label>
+            <Form.Control
+              type='password'
+              placeholder='Enter Your Password'
+              name='password'
+              onChange={handleInputChange}
+              value={userFormData.password}
+              required
+            />
+          </div>
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
-        <Button
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
+        <div className='text-center'>
+          <Button
+            disabled={!(userFormData.email && userFormData.password)}
+            type='submit'
+            variant='success'>
+            Submit
+          </Button>
+        </div>
       </Form>
     </>
   );

@@ -10,6 +10,19 @@ const userSchema = new Schema(
             required: true,
             unique: true,
         },
+
+        firstName: {
+            type: String
+        },
+
+        lastName: {
+            type: String
+        },
+
+        avatarURL: {
+            type: String
+        },
+
         email: {
             type: String,
             required: true,

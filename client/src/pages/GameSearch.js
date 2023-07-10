@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { searchGames } from '../../utils/API';
+import { searchGames } from '../utils/API';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom'; 
-import '../../styles/GameSearch.css';
+import '../styles/GameSearch.css';
 
-import { GET_ME } from '../../utils/queries';
+const GameSearch = () => {
 
-    const GameSearch = () => {
 
-    const { loading, data } = useQuery(GET_ME);
-
-    const userData = data?.me || {};
-
-    console.log(userData);
     const [searchTerm, setSearchTerm] = useState('');
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
@@ -50,7 +43,7 @@ import { GET_ME } from '../../utils/queries';
     const handleTabClick = (index) => {
         setActiveTab(index + 1);
         // Navigate to the lobby with game data
-        navigate(`/lobby/${games[index].id}`, { state: { game: games[index] } });
+        navigate(`/game/${games[index].id}`, { state: { game: games[index] } });
     };
 
     const handleSearchClick = async () => {
@@ -69,7 +62,7 @@ import { GET_ME } from '../../utils/queries';
         setGames(gameData);
         setMessage(''); 
         // Navigate to the lobby of the first game in the search results
-        navigate(`/lobby/${gameData[0].id}`, { state: { game: gameData[0] } });
+        navigate(`/game/${gameData[0].id}`, { state: { game: gameData[0] } });
     };
 
     return (

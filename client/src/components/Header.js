@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGamepad, faBars } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Header.css';
+import '../styles/Header.css';
 
 const Header = () => {
     const [showLinks, setShowLinks] = useState(false);

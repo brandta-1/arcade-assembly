@@ -106,10 +106,10 @@ const resolvers = {
         //below notes apply to any mutation that uses context:
         //for the testing version, add "userId" as an argument and replce the context id,
         // you will also need to add that as an argument in the typeDefs
-        createLobby: async (parent, { gameId, userId, limit }) => {
+        createLobby: async (parent, { gameId, limit }, context) => {
             //try to create a lobby with a game and user ID
             //the owner has their Id set, and also added to the list of players
-            const theId = userId;
+            const theId = context.user._id;
             try {
                 const lobby = await Lobby.create({
                     game: gameId,
@@ -117,8 +117,6 @@ const resolvers = {
                     players: [theId],
                     limit: limit
                 });
-
-
 
                 if (lobby) {
                     const game = await Game.findOneAndUpdate(
@@ -151,8 +149,10 @@ const resolvers = {
         //the lobbyId variable will be available bc the lobbies should be rendered using getGameLobbies or getPlayerLobbies
         //see prior notes for context parameter
         //WILL RETURN NULL IF ALREADY JOINED
-        join: async (parent, { lobbyId, userId }) => {
+        join: async (parent, { lobbyId }, context) => {
             //try to find the current lobby, and let a player join
+
+            const userId = context.user._id;
 
             try {
                 let lobby = await Lobby.findOne({ _id: lobbyId })
@@ -190,48 +190,45 @@ const resolvers = {
                 console.log(err);
                 return err;
             }
-
-
         },
 
 
         //This one doesnt use context, because a leader may want to kick, so it will take id instead
-        leave: async (parent, { lobbyId, userId }) => {
+        leave: async (parent, { lobbyId, username }) => {
             try {
+
+                //remove the lobby from the user
+                const user = await User.findOneAndUpdate(
+                    { username: username },
+                    { $pull: { lobbies: lobbyId } },
+                    { new: true }
+                );
 
                 //remove the user from the lobby
                 const lobby = await Lobby.findOneAndUpdate(
                     { _id: lobbyId },
-                    { $pull: { players: userId } },
+                    { $pull: { players: user._id } },
                     { new: true }
                 ).populate('game', '-lobbies')
                     .populate('owner', 'username')
                     .populate('players', 'username');;
 
-                console.log(lobby);
-
-                //remove the lobby from the user
-                const user = await User.findOneAndUpdate(
-                    { _id: userId },
-                    { $pull: { lobbies: lobbyId } },
-                    { new: true }
-                );
-
                 //if the lobby is now empty, delete it, and remove it from the games lobbies
                 if (lobby.players.length == 0) {
-                    const game = Game.findOneAndUpdate(
+                    const game = await Game.findOneAndUpdate(
                         { igdb: lobby.game.igdb },
                         { $pull: { lobbies: lobbyId } },
                         { new: true }
                     );
+
                     lobby.deleteOne({ _id: lobby._id });
                     return lobby;
                 }
 
                 //if the lobby-leader left
-                if (lobby.owner._id.toHexString() == userId) {
+                if (lobby.owner.username == username) {
                     //the now-oldest member is the new leader
-                    lobby.set({ owner: lobby.players[0]._id.toHexString() });
+                    lobby.set({ owner: user._id });
                     await lobby.save();
                     return lobby;
                 }
@@ -265,7 +262,7 @@ const resolvers = {
 async function lobbyArray(x) {
 
     let lobbies = await Promise.all(x.lobbies.map(async i =>
-        // console.log(i)
+        
         await Lobby.findById(i.toHexString())
             .populate('game', 'name cover')
             .populate('owner', 'username')

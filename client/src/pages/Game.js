@@ -3,9 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Lobby.css'
+import '../styles/Lobby.css'
 
-const Lobby = () => {
+const Game = () => {
     const [game, setGame] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
@@ -55,8 +55,11 @@ const Lobby = () => {
                     <p className="game-note">Please note older released games may have less active players.</p>
                 </Col>
             </Row>
+
+            
+
         </Container>
     );
 };
 
-export default Lobby;
+export default Game;

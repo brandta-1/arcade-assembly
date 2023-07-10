@@ -18,8 +18,9 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            select: false,
+            // select: false,
             required: true,
+            min: 7,
         },
 
         lobbies: [
@@ -42,6 +43,8 @@ userSchema.pre('save', async function (next) {
   });
 
   userSchema.methods.isCorrectPassword = async function (password) {
+    console.log(password);
+    console.log(this.password);
     return bcrypt.compare(password, this.password);
   };
 

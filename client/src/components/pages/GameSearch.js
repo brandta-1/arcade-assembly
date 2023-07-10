@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { searchGames } from '../../utils/API';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +7,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom'; 
 import '../../styles/GameSearch.css';
 
-const GameSearch = () => {
+import { GET_ME } from '../../utils/queries';
+
+    const GameSearch = () => {
+
+    const { loading, data } = useQuery(GET_ME);
+
+    const userData = data?.me || {};
+
+    console.log(userData);
     const [searchTerm, setSearchTerm] = useState('');
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);

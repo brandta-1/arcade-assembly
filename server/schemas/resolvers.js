@@ -15,7 +15,6 @@ const resolvers = {
         getUser: async (parent, { username }) => {
             const user = await User.findOne({ username });
             console.log(user);
-            console.log(user.lobbies[0].game)
             return user;
         },
 

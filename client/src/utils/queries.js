@@ -38,3 +38,23 @@ query Query($gameName: String) {
   }
 }
 `;
+
+export const GET_USER_LOBBIES = gql`
+query Query($username: String) {
+  getUserLobbies(username: $username) {
+    _id
+    game {
+      cover
+      name
+    }
+    owner {
+      username
+    }
+    players {
+      username
+    }
+    limit
+  }
+}
+`;
+

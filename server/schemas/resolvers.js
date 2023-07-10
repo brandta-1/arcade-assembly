@@ -216,32 +216,25 @@ const resolvers = {
                     { new: true }
                 );
 
-                //TODO: if that was the last person in the lobby, delete it, and remove it from its games
-
-                /*
-                let lobby = await Lobby.findById(lobbyId);
-
-                //remove the player's ID from the player array
-                lobby.players.pull({ _id: userId });
-                await lobby.save();
-
-                let user = await User.findById(userId);
-
-                //remove the lobby's ID from the lobby array
-                user.lobbies.pull({ _id: lobbyId });
-                await user.save();
-
-                //if that was the only player in the lobby, then delete the lobby
-
-                //if that player was the owner, a new owner is needed
-                if (lobby.owner.toHexString() == userId) {
-                    //the now-oldest member is the new leader
-                    lobby.set({ owner: lobby.players[0].toHexString() });
-                    await lobby.save();
+                //if the lobby is now empty, delete it, and remove it from the games lobbies
+                if (lobby.players.length == 0) {
+                    const game = Game.findOneAndUpdate(
+                        { igdb: lobby.game.igdb },
+                        { $pull: { lobbies: lobbyId } },
+                        { new: true }
+                    );
+                    lobby.deleteOne({ _id: lobby._id });
+                    return lobby;
                 }
-                */
 
-                return lobby;
+                //if the lobby-leader left
+                if (lobby.owner._id.toHexString() == userId) {
+                    //the now-oldest member is the new leader
+                    lobby.set({ owner: lobby.players[0]._id.toHexString() });
+                    await lobby.save();
+                    return lobby;
+                }
+
             } catch (err) {
                 console.log(err);
                 return err;
@@ -270,8 +263,6 @@ const resolvers = {
 
 async function lobbyArray(x) {
 
-    console.log(x.lobbies)
-
     let lobbies = await Promise.all(x.lobbies.map(async i =>
         // console.log(i)
         await Lobby.findById(i.toHexString())
@@ -280,6 +271,7 @@ async function lobbyArray(x) {
             .populate('players', 'username')
     ));
 
+    console.log(lobbies);
 
     return lobbies
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/pages/Header';
 import Home from './components/pages/Home';
@@ -11,8 +12,17 @@ import Footer from './components/pages/Footer';
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+  headers: {
+    authorization: localStorage.getItem('id_token')
+  }
+});
+
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
       <div className="app-container">
         <Header />
@@ -29,6 +39,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ApolloProvider>
   );
 }
 

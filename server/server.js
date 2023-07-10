@@ -1,31 +1,41 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-var cors = require('cors')
+const { authMiddleware } = require('./utils/auth');
+const { typeDefs, resolvers } = require('./schemas');
+const db = require('./config/connection');
+const cors = require('cors');
 const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// const server = new ApolloServer({ typeDefs, resolvers, context: authMiddleware });
+const herokuliveURL = null;
+const HOST = herokuliveURL || 'https://localhost:3000';
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const server = new ApolloServer({ typeDefs, resolvers, context: authMiddleware });
 
-app.use(cors());
-
-app.use(routes);
+app.use(
+    express.urlencoded({ extended: true }),
+    express.json(),
+    //here is a list of cross origins that are valid, its valid to enable CORS, its just us
+    //wait until after deployment to mess with CORS, also look into HELMET for express
+    cors({
+         origin: [
+             HOST,
+             'https://studio.apollographql.com'
+         ]
+    }),
+    routes
+);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
-
- app.listen(PORT, () => console.log(`App on at ${PORT}`));
-/*
+//  app.get('/*', (req, res) => {
+//      res.sendFile(path.join(__dirname, '../client/build/index.html'));
+//  });
 
 const startApolloServer = async () => {
     await server.start();
@@ -40,5 +50,3 @@ const startApolloServer = async () => {
 };
 
 startApolloServer(typeDefs, resolvers);
-
-*/

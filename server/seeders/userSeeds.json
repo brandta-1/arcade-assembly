@@ -1,0 +1,178 @@
+[
+  {
+    "firstName": "Cambric",
+    "lastName": "Moye",
+    "username": "BreathingAmoeba",
+    "email": "Cammy@gmail.com",
+    "password": "password01",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/IMG-4570.jpg?updatedAt=1688303355064"
+  },
+  {
+    "firstName": "Dragonfly",
+    "lastName": "Jones",
+    "username": "Dragonflys Dojo",
+    "email": "DFly@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
+  },
+  {
+    "firstName": "Luke",
+    "lastName": "Skywalker",
+    "username": "JediMaster",
+    "email": "luke@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/luke.png?updatedAt=1688226991928"
+  },
+  {
+    "firstName": "Hermione",
+    "lastName": "Granger",
+    "username": "MagicWitch",
+    "email": "hermione@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar5.png?updatedAt=1688305286440"
+  },
+  {
+    "firstName": "Walter",
+    "lastName": "White",
+    "username": "Heisenberg",
+    "email": "walter@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/walter.png?updatedAt=1688226991618"
+  },
+  {
+    "firstName": "Frodo",
+    "lastName": "Baggins",
+    "username": "RingBearer",
+    "email": "frodo@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/frodo.png?updatedAt=1688226991833"
+  },
+  {
+    "firstName": "Leia",
+    "lastName": "Organa",
+    "username": "RebelPrincess",
+    "email": "leia@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/leia.png?updatedAt=1688226991709"
+  },
+  {
+    "firstName": "Gandalf",
+    "lastName": "the Grey",
+    "username": "WizardSage",
+    "email": "gandalf@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/gandalf.png?updatedAt=1688226993074"
+  },
+  {
+    "firstName": "Jesse",
+    "lastName": "Pinkman",
+    "username": "YoBitch",
+    "email": "jesse@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/jessePinkman.png?updatedAt=1688226991520"
+  },
+  {
+    "firstName": "Obi-Wan",
+    "lastName": "Kenobi",
+    "username": "JediKnight",
+    "email": "obiwan@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/obiWan.png?updatedAt=1688226991718"
+  },
+  {
+    "firstName": "Aragorn",
+    "lastName": "Elessar",
+    "username": "KingOfGondor",
+    "email": "aragorn@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/aragonElessar.png?updatedAt=1688226991502"
+  },
+  {
+    "firstName": "Saul",
+    "lastName": "Goodman",
+    "username": "CriminalLawyer",
+    "email": "saul@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/saulGoodman.png?updatedAt=1688226991500"
+  },
+  {
+    "firstName": "Han",
+    "lastName": "Solo",
+    "username": "Smuggler",
+    "email": "han@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar2.png?updatedAt=1688305286483"
+  },
+  {
+    "firstName": "Samwise",
+    "lastName": "Gamgee",
+    "username": "LoyalFriend",
+    "email": "samwise@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/Samwise_Gamgee_playing_video_games.jpg?updatedAt=1688226994546"
+  },
+  {
+    "firstName": "Mace",
+    "lastName": "Windu",
+    "username": "JediMasterImposter",
+    "email": "mace@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552"
+  },
+  {
+    "firstName": "Gimli",
+    "lastName": "Son of Gloin",
+    "username": "DwarvenAxe",
+    "email": "gimli@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455"
+  },
+  {
+    "firstName": "Skyler",
+    "lastName": "White",
+    "username": "ConcernedWife",
+    "email": "skyler@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar7.png?updatedAt=1688305286447"
+  },
+  {
+    "firstName": "Rey",
+    "lastName": "Skywalker",
+   "username": "ForceBearer",
+    "email": "rey@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/Rey-Skywalkder-playing-video-games.png?updatedAt=1688226994414"
+  },
+  {
+    "firstName": "Legolas",
+    "lastName": "Greenleaf",
+    "username": "ElvenArcher",
+    "email": "legolas@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455"
+  },
+  {
+    "firstName": "Gus",
+    "lastName": "Fring",
+    "username": "LosPollosHermanos",
+    "email": "gus@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
+  },
+  {
+    "firstName": "Darth",
+    "lastName": "Vader",
+    "username": "DarkLord",
+    "email": "vader@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435"
+  },
+  {
+    "firstName": "Bilbo",
+    "lastName": "Baggins",
+    "username": "AdventurousHobbit",
+    "email": "bilbo@gmail.com",
+    "password": "password12345",
+    "avatarURL": "https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552"
+  }
+]

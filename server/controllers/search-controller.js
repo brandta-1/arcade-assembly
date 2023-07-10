@@ -1,9 +1,12 @@
 require('dotenv').config();
+const fetch = require('node-fetch');
 
 function clean(d) {
     d.forEach(i => {
-        console.log(i.id.toString());
-        i.cover = i.cover.url;
+          // Check if the cover image is available and convert the image_id to a URL for a larger image
+          if (i.cover && i.cover.image_id) {
+            i.cover = `//images.igdb.com/igdb/image/upload/t_720p/${i.cover.image_id}.jpg`;
+        }
         Object.assign(i, { date: i.first_release_date, igdb: i.id.toString() })
         delete i['first_release_date'];
         delete i['id'];
@@ -12,7 +15,6 @@ function clean(d) {
 }
 
 module.exports = {
-
     async searchGames(req, res) {
         try {
             let result = await fetch(
@@ -24,7 +26,7 @@ module.exports = {
                         'Client-ID': `${process.env.CLIENT_ID}`,
                         'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`,
                     },
-                    body: `search "${req.params.query}"; f cover.url, first_release_date, name; where game_modes = (2);`,
+                    body: `search "${req.params.query}"; f cover.image_id, release_dates.date, name; where game_modes = (2);`,
                     data: " "
                 }
             ).then(async (r) => {
@@ -34,9 +36,8 @@ module.exports = {
             });
             res.json(result);
         } catch (err) {
+            console.log(err)
             return res.status(400).json(err)
         }
     }
-
-    
 }

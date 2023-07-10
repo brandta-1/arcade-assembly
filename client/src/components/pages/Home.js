@@ -16,11 +16,11 @@ const Home = () => {
   return (
     <Container>
       <Row>
-        <Col md={6} className="align-self-center text-center">
-          <h1>Website Title*</h1>
+        <Col md={5} className="align-self-center text-center">
+          <h1 className="website-title">Website Title*</h1> {/* <-- Added custom class */}
         </Col>
-        <Col md={6} className="align-self-center text-center">
-          <p>Brief Description of the website*</p>
+        <Col md={7} className="align-self-center text-center">
+          <p className="brief-description">Brief Description of the website*</p> {/* <-- Added custom class */}
         </Col>
       </Row>
       <Row>
@@ -30,7 +30,7 @@ const Home = () => {
               <FontAwesomeIcon icon={faShield} size="lg" className="shield-icon" />
               <div className="shield-text">
                 <p>Total Games</p>
-                <span>300</span>
+                <span>244,277</span>
               </div>
             </div>
           </div>
@@ -54,11 +54,11 @@ const Home = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={6} className="text-center">
-          <h2>Our Goal</h2>
+        <Col md={5} className="text-center">
+          <h2 className="our-goal">Our Goal</h2> {/* <-- Added custom class */}
         </Col>
-        <Col md={6} className="text-center">
-          <p>Description for our goal.</p>
+        <Col md={7} className="text-center">
+          <p className="goal-description">Description for our goal.</p> {/* <-- Added custom class */}
         </Col>
       </Row>
     </Container>

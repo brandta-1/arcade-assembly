@@ -1,0 +1,108 @@
+.app-header-search {
+    padding: 1rem 5rem;
+}
+
+.game-search-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px !important;
+    font-size: 38px !important;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.game-search-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 23%;
+    right: 25%;
+    border-bottom: 3px solid forestgreen;
+    border-radius: 20px;
+}
+
+.app-header-search .form-control {
+    display: flex;
+    justify-content: center;
+    min-width: 500px;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+.app-header-search .form-control .search-input {
+    position: relative;
+    width: 50%; 
+    border: 2px solid grey;
+    background-color: transparent;
+    border-radius: 30px;
+    color: white;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.search-input-shifted {
+    padding-left: 1.2rem !important;
+}
+
+.app-header-search .form-control .icon-container {
+    position: relative;
+    right: 37px;
+    top: 7px;
+}
+
+.app-header-search .form-control .icon-container .search-icon {
+    color: grey;
+    cursor: pointer;
+}
+
+/* search list */
+.search-list {
+    z-index: 1;
+    position: relative;
+    top: 2%;
+    left: 0;
+    background-color: transparent;
+    width: 100%;
+    max-height: 380px;
+    overflow-y: scroll;
+}
+
+.search-list::-webkit-scrollbar {
+    width: 6px;
+    color: white;
+}
+
+.search-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.search-list::-webkit-scrollbar-thumb {
+    background-color: forestgreen;
+    border-radius: 5px;
+}
+
+.search-list .search-list-item {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: 0.4rem 0;
+    border: none;
+}
+
+.search-list .search-list-item img {
+    height: 65px;
+    width: 60px;
+    margin-right: 40px;
+}
+
+.search-list .search-list-item p {
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+}
+
+.search-list .search-list-item:hover {
+    background-color: forestgreen;
+}

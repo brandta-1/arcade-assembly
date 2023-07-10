@@ -13,7 +13,7 @@ const resolvers = {
         //get any user that isnt the logged-in user
         //getUser and getUserLobbies will be called whenever you go to a user's profile page
         getUser: async (parent, { username }) => {
-            const user = await User.findOne({ username });
+            const user = await User.findOne({ username }).populate('friends');
             console.log("User:" ,user);
             // console.log("User Lobbies??", user.lobbies[0].game)
             return user;
@@ -53,6 +53,14 @@ const resolvers = {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };
+        },
+
+        addFriend: async (parent, {userId, friendId}) => {
+            return User.findOneAndUpdate(
+                {_id: userId},
+                {$addToSet: {friends: friendId}},
+                { new: true, runValidators: true, }
+                ).populate('friends')
         },
 
 

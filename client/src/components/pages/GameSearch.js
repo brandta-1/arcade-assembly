@@ -59,7 +59,8 @@ const GameSearch = () => {
 
         setGames(gameData);
         setMessage(''); 
-        if (games.length > 0) navigate(`/lobby/${games[0].id}`);
+        // Navigate to the lobby of the first game in the search results
+        navigate(`/lobby/${gameData[0].id}`, { state: { game: gameData[0] } });
     };
 
     return (

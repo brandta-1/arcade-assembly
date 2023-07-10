@@ -24,9 +24,9 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-left: 48px;
     margin-bottom: 26px;
     transition: transform 0.4s ease-in-out;
+    width: fit-content;
 }
 
 .back-button:hover {

@@ -30,11 +30,11 @@ const Home = () => {
   return (
     <Container>
       <Row>
-        <Col md={5} className="align-self-center text-center">
-          <h1 className="website-title">Website Title*</h1> {/* <-- Added custom class */}
+        <Col md={6} className="align-self-center text-center">
+          <h1 className="website-title">Arcade Assembly</h1>
         </Col>
-        <Col md={7} className="align-self-center text-center">
-          <p className="brief-description">Brief Description of the website*</p> {/* <-- Added custom class */}
+        <Col md={6} className="align-self-center text-center">
+          <p className="brief-description">A digital hub where gamers can find their next favorite game, connect with fellow players, and dive into a world of gaming exploration.</p> {/* <-- Added custom class */}
         </Col>
       </Row>
       <Row>
@@ -63,16 +63,16 @@ const Home = () => {
       </Row>
       <Row>
         <Col md={12} className="text-center">
-          <h3>New to WebsiteName? Signup Now!</h3>
+          <h3 className="sign-up-text">New to Arcade Assembly? Signup Now!</h3>
           <button onClick={handleSignupClick}>Signup</button> {/* <-- Added onClick handler */}
         </Col>
       </Row>
       <Row>
         <Col md={5} className="text-center">
-          <h2 className="our-goal">Our Goal</h2> {/* <-- Added custom class */}
+          <h2 className="our-goal">Our Goal</h2>
         </Col>
         <Col md={7} className="text-center">
-          <p className="goal-description">Description for our goal.</p> {/* <-- Added custom class */}
+          <p className="goal-description">At Arcade Assembly, our goal is to create an inclusive gaming community, making it more enjoyable and accessible for everyone. We aim to provide a platform for discovery, where users can find new games, meet like-minded players, and participate in a vibrant gaming culture.</p> {/* <-- Added custom class */}
         </Col>
       </Row>
     </Container>

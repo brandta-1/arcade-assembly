@@ -61,4 +61,3 @@ query Query($username: String) {
   }
 }
 `;
-

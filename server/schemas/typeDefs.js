@@ -43,9 +43,10 @@ const typeDefs = gql`
     type Query {
         # see resolvers.js for query comments
         me: User
-        getUser(username: String): User
+        getUser(userId: ID, username: String): User 
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String): [Lobby]
+        getUsers: [User]
         
     }
 

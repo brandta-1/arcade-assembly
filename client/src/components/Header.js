@@ -24,7 +24,7 @@ const Header = () => {
                         <div className={showLinks ? "links-container active" : "links-container"}>
                             <Link to="/login" className="nav-link">Login</Link>
                             <Link to="/signup" className="nav-link">Signup</Link>
-                            <Link to="/profile" className="nav-link">Profile</Link>
+                            <Link to="/me" className="nav-link">Profile</Link>
                             <Link to="/game-search" className="nav-link">Game Search</Link>
                         </div>
                     </div>

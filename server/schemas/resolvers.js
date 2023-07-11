@@ -12,11 +12,23 @@ const resolvers = {
 
         //get any user that isnt the logged-in user
         //getUser and getUserLobbies will be called whenever you go to a user's profile page
-        getUser: async (parent, { username }) => {
-            const user = await User.findOne({ username }).populate('friends');
+        getUser: async (parent, { userId, username }) => {
+            let args = { _id: userId };
+            if(username) {
+                args = {username}
+            }
+            console.log("ARGS-----------",args)
+            const user = await User.findOne(args).populate('friends');
             console.log("User:" ,user);
             // console.log("User Lobbies??", user.lobbies[0].game)
             return user;
+        },
+
+        // get all users 
+        getUsers: async () => {
+            const users = await User.find().populate('friends');
+            console.log(users);
+            return await User.find().populate('friends');
         },
 
         //TODO: getUserLobbies and getGameLobbies could be rewritten into one getLobbies query

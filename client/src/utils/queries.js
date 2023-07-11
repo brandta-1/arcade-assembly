@@ -5,8 +5,18 @@ export const GET_ME = gql`
 query Me {
     me {
       _id
+    username
+    firstName
+    lastName
+    avatarURL
+    email
+    friends {
+      _id
       username
-      email
+    firstName
+    lastName
+    avatarURL
+    }
     }
   }
 
@@ -15,8 +25,8 @@ query Me {
 //TODO: Cam can add profile picture functionality
 export const GET_USER = gql`
 
-query GetUser($username: String) {
-  getUser(username: $username) {
+query GetUser($userId: ID, $username: String) {
+  getUser(userId: $userId, username: $username) {
     _id
     username
     firstName
@@ -32,7 +42,6 @@ query GetUser($username: String) {
     }
   }
 }
-
 `;
 
 export const GET_GAME_LOBBIES = gql`
@@ -68,4 +77,24 @@ query Query($username: String) {
     limit
   }
 }
+`;
+
+export const GET_USERS = gql`
+  query getUsers {
+    getUsers {
+      _id
+    username
+    firstName
+    lastName
+    avatarURL
+    email
+      friends {
+        _id
+        username
+      firstName
+      lastName
+      avatarURL
+      }
+    }
+  }
 `;

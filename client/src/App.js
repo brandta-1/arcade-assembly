@@ -10,6 +10,7 @@ import Game from './pages/Game';
 import Lobby from './pages/Lobby';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
+import ProfileList from './pages/ProfileList'
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -32,11 +33,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/:username" element={<Profile />} />
+            <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/me" element={<Profile />} />
             <Route path="/game-search" element={<GameSearch />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/game/:gameId" element={<Game />} />
-            <Route path = "/lobby/:lobbyId" element={<Lobby />} />
+            <Route path="/profilesList" element={<ProfileList />} />
+            <Route path ="/lobby/:lobbyId" element={<Lobby />} />
           </Routes>
         </div>
         <Footer />

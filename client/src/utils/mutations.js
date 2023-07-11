@@ -59,17 +59,31 @@ mutation CreateLobby($gameId: ID!, $userId: ID, $limit: Int!) {
 `;
 
 export const JOIN = gql`
-  mutation Join($lobbyId: ID!, $userId: ID!) {
-    join(lobbyId: $lobbyId, userId: $userId) {
-    _id
+  mutation Join($lobbyId: ID!) {
+    join(lobbyId: $lobbyId) {
+      _id
+    limit
+    owner {
+      username
+    }
+    players {
+      username
+    }
   }
 }
 `;
 
 export const LEAVE = gql`
-mutation Mutation($lobbyId: ID!, $userId: ID!) {
-  leave(lobbyId: $lobbyId, userId: $userId) {
+mutation Leave($lobbyId: ID!, $username: String!) {
+  leave(lobbyId: $lobbyId, username: $username) {
     _id
+    limit
+    owner {
+      username
+    }
+    players {
+      username
+    }
   }
 }
 `;

@@ -3,33 +3,41 @@ import { searchGames } from '../utils/API';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../styles/GameSearch.css';
 
+import { useMutation } from '@apollo/client';
+import { ADD_GAME } from '../utils/mutations'
+
+
+
 const GameSearch = () => {
+    const [addGame, { error }] = useMutation(ADD_GAME);
+
 
 
     const [searchTerm, setSearchTerm] = useState('');
     const [games, setGames] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
-    const [message, setMessage] = useState(''); 
+    const [message, setMessage] = useState('');
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (searchTerm.length > 1) {
             fetchGames(searchTerm);
         } else {
             setGames([]);
-            setMessage(''); 
+            setMessage('');
         }
     }, [searchTerm]);
 
     const fetchGames = async (searchTerm) => {
         const gameData = await searchGames(searchTerm);
+        console.log(gameData);
         if (Array.isArray(gameData)) {
             setGames(gameData);
-            setMessage(''); 
+            setMessage('');
         } else {
             console.error('Error: Expected an array but received', gameData);
             setGames([]);
@@ -40,11 +48,19 @@ const GameSearch = () => {
         setSearchTerm(event.target.value);
     };
 
-    const handleTabClick = (index) => {
+    const handleTabClick = async (index) => {
         setActiveTab(index + 1);
         // Navigate to the lobby with game data
-        navigate(`/game/${games[index].id}`, { state: { game: games[index] } });
-    };
+        
+        try {
+            const data = await addGame({ variables: games[index] });
+            console.log(data);
+         } catch (err) {
+             console.error(err);
+         }
+         navigate(
+            `/game/${games[index].id}`, { state: { game: games[index] } });
+     };
 
     const handleSearchClick = async () => {
         if (!searchTerm) {
@@ -53,16 +69,28 @@ const GameSearch = () => {
         }
 
         const gameData = await searchGames(searchTerm);
+        console.log(gameData)
         if (!gameData || !Array.isArray(gameData) || gameData.length === 0) {
             setMessage('No results found');
             setGames([]);
             return;
         }
 
+        //add the game to our database
+        try {
+           const data = await addGame({ variables: gameData });
+           console.log(data);
+        } catch (err) {
+            console.error(err);
+        }
+
         setGames(gameData);
-        setMessage(''); 
-        // Navigate to the lobby of the first game in the search results
-        navigate(`/game/${gameData[0].id}`, { state: { game: gameData[0] } });
+        setMessage('');
+        navigate(`/game/${gameData[0].name}`,
+            {
+                state: { game: gameData[0] }
+            });
+         
     };
 
     return (
@@ -73,7 +101,7 @@ const GameSearch = () => {
                     <div className="form-control">
                         <input
                             type="text"
-                            placeholder="Search for a game..."
+                            placeholder="Find Game"
                             value={searchTerm}
                             onChange={handleInputChange}
                             className="search-input search-input-shifted"
@@ -83,7 +111,7 @@ const GameSearch = () => {
                         </div>
                     </div>
 
-                    {message && <p>{message}</p>} 
+                    {message && <p>{message}</p>}
 
                     <ListGroup className="search-list">
                         {games.map((game, index) => (

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShield } from '@fortawesome/free-solid-svg-icons';
 import {useQuery} from '@apollo/client';
-import {GET_USER} from '../../utils/queries';
-import '../../styles/Home.css';
+import {GET_USER} from '../utils/queries';
+import '../styles/Home.css';
 
 const Home = () => {
 

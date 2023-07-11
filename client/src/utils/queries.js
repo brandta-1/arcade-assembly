@@ -32,7 +32,6 @@ query GetUser($username: String) {
     }
   }
 }
-
 `;
 
 export const GET_GAME_LOBBIES = gql`

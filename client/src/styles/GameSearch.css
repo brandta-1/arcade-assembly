@@ -24,7 +24,7 @@
 .app-header-search .form-control {
     display: flex;
     justify-content: center;
-    min-width: 500px;
+    min-width: 300px;
     position: relative;
     background-color: transparent;
     border: none;

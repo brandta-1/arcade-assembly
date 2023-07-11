@@ -23,6 +23,7 @@ app.use(
     cors({
          origin: [
              HOST,
+             'https://arcade-assembly-c977bb949035.herokuapp.com/',
              'https://studio.apollographql.com'
          ]
     }),

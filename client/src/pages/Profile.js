@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 // import query single profile
-import { GET_USER, GET_ME } from '../../utils/queries';
-import '../../styles/Profile.css'
+import { GET_USER, GET_ME } from '../utils/queries';
 
 const Profile = () => {
   const { username } = useParams();

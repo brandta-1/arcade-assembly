@@ -12,6 +12,7 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         avatarURL: String
+        friends: [User]
     }
 
     type Game {
@@ -62,6 +63,9 @@ const typeDefs = gql`
     join(lobbyId: ID!, userId: ID!): Lobby
     leave(lobbyId: ID!, username: String!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby
+
+    # add friends to user
+    addFriend(userId: ID!, friendId: ID!): User
     }
 `;
 

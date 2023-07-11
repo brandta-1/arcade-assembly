@@ -1,0 +1,55 @@
+/* * {
+    border: 1px solid whitesmoke;
+} */
+
+.avatar {
+    height: 300px;
+}
+
+.friendAvatar {
+    height: 100px;
+}
+
+.profileHeader, .friendCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    margin: 25px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: rgb(80, 79, 79);
+}
+
+.headerText {
+    width: 100%;
+    text-align: center;
+}
+
+.friendCard {
+    margin: 15px auto;
+    width: 75%;
+}
+
+.buttonWrapper {
+    text-align: center;
+    height: 100px;
+}
+
+.listButton {
+    min-width: 500px;
+    margin: 10px auto;
+}
+
+.listContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.outsideWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}

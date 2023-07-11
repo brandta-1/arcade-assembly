@@ -23,12 +23,16 @@ const ProfileList = () => {
                     <p>No users yet</p>
                 ) :  (
                     userData.map((user) => (
-                        <Link to={`/profile/${user.username}`}>
+
+
+                        <Link to={`/profile/${user._id}`}>
                         <div className='profileHeader'>
                         <h2>{user.username}</h2>
                         <img className='listAvatar' src={user.avatarURL} /> 
                         </div>
                         </Link>
+
+                        
                     ))
                 )}
             </div>

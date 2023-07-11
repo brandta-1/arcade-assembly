@@ -23,6 +23,13 @@ query GetUser($username: String) {
     lastName
     avatarURL
     email
+    friends {
+      _id
+      username
+    firstName
+    lastName
+    avatarURL
+    }
   }
 }
 
@@ -62,4 +69,3 @@ query Query($username: String) {
   }
 }
 `;
-

@@ -1,31 +1,37 @@
 /* Home styles */
 
 .website-title {
-  font-size: 40px; /* Adjust the font size */
+  font-size: 40px;
   margin-bottom: 20px;
+  color: white;
+  border-bottom: 3px solid forestgreen;
+  padding-bottom: 10px;
 }
 
 .brief-description {
   font-size: 18px; 
   max-width: 600px; 
- 
+  padding-top: 10px;
 }
 
 .our-goal {
-  font-size: 36px; 
-  color: rgb(54, 212, 54); 
-  margin-bottom: 100px;
+  font-size: 36px;
+  color: white;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  border-bottom: 3px solid forestgreen;
+  padding-bottom: 10px;
 }
 
 .goal-description {
-  font-size: 18px; 
-  margin-top: 10px;
+  font-size: 18px;
+  margin-bottom: 40px; 
 }
 
 .shield-wrapper {
   position: relative;
-  margin-bottom: 100px;
-  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .shield-icon {
@@ -52,6 +58,10 @@ margin-bottom: 8px;
 
 .shield-text span {
   color: rgb(247, 243, 31);
+}
+
+.sign-up-text {
+  margin-top: 60px;
 }
 
 .text-center h3 {

@@ -6,30 +6,32 @@ import { Link } from 'react-router-dom';
 import '../styles/Profile.css'
 
 const Profile = () => {
-  const { username } = useParams();
-  console.log(username);
+  const { userId } = useParams();
+  console.log(userId);
 
-  const { loading: userLoading, data: userQueryData } = useQuery(username ? GET_USER : GET_ME, { variables: { username } });
-  const { loading: lobbiesLoading, data: userLobbiesData } = useQuery(GET_USER_LOBBIES, { variables: { username } })
+  const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
+  console.log(userQueryData?.me);
+  console.log(userQueryData?.getUser);
+  // const { loading: lobbiesLoading, data: userLobbiesData } = useQuery(GET_USER_LOBBIES, { variables: { username } })
 
-  const userData = userQueryData?.getUser;
+  const userData = userQueryData?.getUser || userQueryData?.me || {};
   console.log("User Data", userData);
 
-  const lobbiesData = userLobbiesData?.getUserLobbies;
-  console.log("Lobbies Data", lobbiesData);
+  // const lobbiesData = userLobbiesData?.getUserLobbies;
+  // console.log("Lobbies Data", lobbiesData);
 
   const [showList, setShowList] = useState([
     { id: 1, show: false },
     { id: 2, show: false },
-    // { id: 3, show: false },
+    { id: 3, show: false },
   ]);
 
   if (userLoading) {
     return <div>Profile Loading...</div>
   }
-  if (lobbiesLoading) {
-    return <div>Lobbies Loading...</div>
-  }
+  // if (lobbiesLoading) {
+  //   return <div>Lobbies Loading...</div>
+  // }
 
   const handleClick = (id) => {
     setShowList((prevLists) =>
@@ -66,34 +68,36 @@ const Profile = () => {
               </Link>
             </div>
           </div>
-        ),
+        )
     },
     {
       id: 2,
       label: 'Lobbies',
       content:
-        (
-          <div>
-            {lobbiesData.length === 0 ? (
-              <p>No lobbies for this user</p>
-            ) : (
-              <div>
-                <h1> {lobbiesData.game.name} </h1>
-                <img src={lobbiesData.game.cover} />
-                <p>Owner: {lobbiesData.owner.username}</p>
-                <div>
-                  <h4>Players: </h4>
-                  {lobbiesData.players.map((player) => (
-                    <p>{player.username}</p>
-                  ))}
-                  <p>Lobby Size: {lobbiesData.limit} </p>
-                </div>
-              </div>        
-            )}
-          </div>
-        )
+
+      <p>Lobbies data here</p>
+        // (
+        //   <div>
+        //     {lobbiesData.length === 0 ? (
+        //       <p>No lobbies for this user</p>
+        //     ) : (
+        //       <div>
+        //         <h1> {lobbiesData.game.name} </h1>
+        //         <img src={lobbiesData.game.cover} />
+        //         <p>Owner: {lobbiesData.owner.username}</p>
+        //         <div>
+        //           <h4>Players: </h4>
+        //           {lobbiesData.players.map((player) => (
+        //             <p>{player.username}</p>
+        //           ))}
+        //           <p>Lobby Size: {lobbiesData.limit} </p>
+        //         </div>
+        //       </div>        
+        //     )}
+        //   </div>
+        // )
     },
-    // { id: 3, label: 'Other', content: <div>Other List Here</div> }
+    { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
   ];
 
   return (

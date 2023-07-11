@@ -1,4 +1,18 @@
-export const setImage = (obj, size) => {
+export const setImage = (img, obj, size) => {
+
+    if(img){
+        return change(img,size);
+    }
+
+    if (obj) {
+        obj.forEach(i => {
+            i.cover = change(i.cover,size)
+        })
+    }
+
+};
+
+function change(x,size) {
 
     const sizes = [
         "thumb",
@@ -6,14 +20,8 @@ export const setImage = (obj, size) => {
         "cover_big"
     ];
 
-    obj.forEach(i => {
+    let stringArr = x.substring(2).split('/');
+    stringArr[4] = `t_${sizes[size]}`;
+    return `//${stringArr.join('/')}`;
+}
 
-        const theString = i.cover;
-
-        let stringArr = theString.substring(2).split('/');
-
-        stringArr[4] = `t_${sizes[size]}`;
-
-        i.cover = `//${stringArr.join('/')}`
-    })
-};

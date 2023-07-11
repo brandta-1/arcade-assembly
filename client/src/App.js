@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import GameSearch from './pages/GameSearch';
 import Game from './pages/Game';
-import Lobby from './components/Lobby'
+import Lobby from './pages/Lobby';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import './styles/App.css';
@@ -36,6 +36,7 @@ function App() {
             <Route path="/game-search" element={<GameSearch />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/game/:gameId" element={<Game />} />
+            <Route path = "/lobby/:lobbyId" element={<Lobby />} />
           </Routes>
         </div>
         <Footer />

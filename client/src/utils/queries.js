@@ -30,8 +30,8 @@ query GetUser($username: String) {
 
 export const GET_GAME_LOBBIES = gql`
 
-query Query($gameName: String) {
-  getGameLobbies(gameName: $gameName) {
+query Query($igdb: String) {
+  getGameLobbies(igdb: $igdb) {
     _id
     owner {
       username
@@ -39,6 +39,7 @@ query Query($gameName: String) {
     players {
       username
     }
+    limit
   }
 }
 `;

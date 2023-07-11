@@ -44,6 +44,8 @@ const resolvers = {
             }
             //if the game isnt in our db, this query will return null
         },
+
+
     },
 
     Mutation: {
@@ -193,9 +195,20 @@ const resolvers = {
         },
 
 
-        //This one doesnt use context, because a leader may want to kick, so it will take id instead
-        leave: async (parent, { lobbyId, username }) => {
+
+        leave: async (parent, { lobbyId, username }, context) => {
             try {
+
+                //get the lobby in question
+                const lobby = await Lobby.findById(lobbyId)
+                    .populate('game', '-lobbies')
+                    .populate('owner', 'username')
+                    .populate('players', 'username');
+
+                //if a non-leader is trying to kick another user, return null
+                if (context.user.username != username && context.user.username != lobby.owner.username) {
+                    return null;
+                }
 
                 //remove the lobby from the user
                 const user = await User.findOneAndUpdate(
@@ -203,15 +216,13 @@ const resolvers = {
                     { $pull: { lobbies: lobbyId } },
                     { new: true }
                 );
-
+                    console.log(user);
                 //remove the user from the lobby
-                const lobby = await Lobby.findOneAndUpdate(
-                    { _id: lobbyId },
-                    { $pull: { players: user._id } },
-                    { new: true }
-                ).populate('game', '-lobbies')
-                    .populate('owner', 'username')
-                    .populate('players', 'username');;
+                
+                await lobby.players.pull({_id: user._id});
+                await lobby.save();
+
+                console.log(lobby);
 
                 //if the lobby is now empty, delete it, and remove it from the games lobbies
                 if (lobby.players.length == 0) {
@@ -232,7 +243,7 @@ const resolvers = {
                     await lobby.save();
                     return lobby;
                 }
-
+                return lobby;
             } catch (err) {
                 console.log(err);
                 return err;
@@ -262,9 +273,9 @@ const resolvers = {
 async function lobbyArray(x) {
 
     let lobbies = await Promise.all(x.lobbies.map(async i =>
-        
+
         await Lobby.findById(i.toHexString())
-            .populate('game', 'name cover')
+            .populate('game')
             .populate('owner', 'username')
             .populate('players', 'username')
     ));

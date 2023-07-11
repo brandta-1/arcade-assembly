@@ -45,6 +45,7 @@ const typeDefs = gql`
         getUser(username: String): User
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String): [Lobby]
+        
     }
 
     type Mutation {
@@ -59,7 +60,7 @@ const typeDefs = gql`
 
     #given the ID of a lobby, and a user, add and remove them
     createLobby(gameId: ID!, userId: ID, limit: Int!): Lobby
-    join(lobbyId: ID!, userId: ID!): Lobby
+    join(lobbyId: ID!): Lobby
     leave(lobbyId: ID!, username: String!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby
     }

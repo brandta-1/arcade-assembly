@@ -3,7 +3,7 @@
 .website-title {
   font-size: 40px;
   margin-bottom: 20px;
-  color: rgb(54, 212, 54);
+  color: white;
   border-bottom: 3px solid forestgreen;
   padding-bottom: 10px;
 }
@@ -16,7 +16,7 @@
 
 .our-goal {
   font-size: 36px;
-  color: rgb(54, 212, 54);
+  color: white;
   margin-bottom: 30px;
   margin-top: 50px;
   border-bottom: 3px solid forestgreen;

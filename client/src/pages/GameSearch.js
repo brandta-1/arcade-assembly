@@ -34,6 +34,7 @@ const GameSearch = () => {
 
     const fetchGames = async (searchTerm) => {
         const gameData = await searchGames(searchTerm);
+        console.log(gameData);
         if (Array.isArray(gameData)) {
             setGames(gameData);
             setMessage('');
@@ -47,12 +48,19 @@ const GameSearch = () => {
         setSearchTerm(event.target.value);
     };
 
-    const handleTabClick = (index) => {
+    const handleTabClick = async (index) => {
         setActiveTab(index + 1);
         // Navigate to the lobby with game data
-        navigate(
+        
+        try {
+            const data = await addGame({ variables: games[index] });
+            console.log(data);
+         } catch (err) {
+             console.error(err);
+         }
+         navigate(
             `/game/${games[index].id}`, { state: { game: games[index] } });
-    };
+     };
 
     const handleSearchClick = async () => {
         if (!searchTerm) {
@@ -70,13 +78,11 @@ const GameSearch = () => {
 
         //add the game to our database
         try {
-            addGame({ variables: gameData });
+           const data = await addGame({ variables: gameData });
+           console.log(data);
         } catch (err) {
             console.error(err);
         }
-
-       
-
 
         setGames(gameData);
         setMessage('');
@@ -84,6 +90,7 @@ const GameSearch = () => {
             {
                 state: { game: gameData[0] }
             });
+         
     };
 
     return (

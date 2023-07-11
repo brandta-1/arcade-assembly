@@ -8,7 +8,9 @@ function clean(d) {
             i.cover = `//images.igdb.com/igdb/image/upload/t_720p/${i.cover.image_id}.jpg`;
         }
         // Change first_release_date to date
-     Object.assign(i, { date: i.first_release_date })['first_release_date'];
+        Object.assign(i, { date: i.first_release_date, igdb: i.id.toString() })
+        delete i['first_release_date'];
+        delete i['id'];
     });
     return d;
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
+import { Link } from 'react-router-dom';
 import '../styles/Profile.css'
 
 const Profile = () => {
@@ -60,7 +61,9 @@ const Profile = () => {
             )}
             {/* Link to see all users in our DB */}
             <div>
+              <Link to={`/profilesList`}>
               <button>See All Users</button>
+              </Link>
             </div>
           </div>
         ),

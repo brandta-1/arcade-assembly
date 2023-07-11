@@ -53,3 +53,10 @@
     flex-direction: column;
     justify-content: start;
 }
+
+/* ProfileList Page Styling */
+
+.listAvatar {
+    height: 200px;
+}
+

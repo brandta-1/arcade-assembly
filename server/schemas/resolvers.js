@@ -19,6 +19,13 @@ const resolvers = {
             return user;
         },
 
+        // get all users 
+        getUsers: async () => {
+            const users = await User.find().populate('friends');
+            console.log(users);
+            return await User.find().populate('friends');
+        },
+
         //TODO: getUserLobbies and getGameLobbies could be rewritten into one getLobbies query
 
         getUserLobbies: async (parent, { username }) => {

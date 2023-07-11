@@ -68,3 +68,23 @@ query Query($username: String) {
 }
 `;
 
+export const GET_USERS = gql`
+  query getUsers {
+    getUsers {
+      _id
+    username
+    firstName
+    lastName
+    avatarURL
+    email
+      friends {
+        _id
+        username
+      firstName
+      lastName
+      avatarURL
+      }
+    }
+  }
+`;
+

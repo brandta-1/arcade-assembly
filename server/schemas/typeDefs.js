@@ -46,6 +46,7 @@ const typeDefs = gql`
         getUser(username: String): User
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String): [Lobby]
+        getUsers: [User]
     }
 
     type Mutation {

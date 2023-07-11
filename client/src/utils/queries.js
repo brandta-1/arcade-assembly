@@ -32,7 +32,6 @@ query GetUser($username: String) {
     }
   }
 }
-
 `;
 
 export const GET_GAME_LOBBIES = gql`
@@ -68,4 +67,29 @@ query Query($username: String) {
     limit
   }
 }
+<<<<<<< HEAD
 `;
+
+export const GET_USERS = gql`
+  query getUsers {
+    getUsers {
+      _id
+    username
+    firstName
+    lastName
+    avatarURL
+    email
+      friends {
+        _id
+        username
+      firstName
+      lastName
+      avatarURL
+      }
+    }
+  }
+`;
+
+=======
+`;
+>>>>>>> 2593a65948359d37177e0131301535c9865ca6eb

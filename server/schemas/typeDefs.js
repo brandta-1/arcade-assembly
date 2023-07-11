@@ -46,7 +46,11 @@ const typeDefs = gql`
         getUser(username: String): User
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String): [Lobby]
+<<<<<<< HEAD
+        getUsers: [User]
+=======
         
+>>>>>>> 2593a65948359d37177e0131301535c9865ca6eb
     }
 
     type Mutation {

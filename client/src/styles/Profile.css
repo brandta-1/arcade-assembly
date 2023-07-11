@@ -7,7 +7,7 @@
 }
 
 .friendAvatar {
-    height: 100px;
+    height: 125px;
 }
 
 .profileHeader, .friendCard {
@@ -33,7 +33,7 @@
 
 .buttonWrapper {
     text-align: center;
-    height: 100px;
+    height: 75px;
 }
 
 .listButton {
@@ -53,3 +53,10 @@
     flex-direction: column;
     justify-content: start;
 }
+
+/* ProfileList Page Styling */
+
+.listAvatar {
+    height: 200px;
+}
+

@@ -20,13 +20,13 @@ app.use(
     express.json(),
     //here is a list of cross origins that are valid, its valid to enable CORS, its just us
     //wait until after deployment to mess with CORS, also look into HELMET for express
-    cors({
-         origin: [
-             HOST,
-             'https://arcade-assembly-c977bb949035.herokuapp.com/',
-             'https://studio.apollographql.com'
-         ]
-    }),
+    // cors({
+    //      origin: [
+    //          HOST,
+    //          'https://arcade-assembly-c977bb949035.herokuapp.com/',
+    //          'https://studio.apollographql.com'
+    //      ]
+    // }),
     routes
 );
 

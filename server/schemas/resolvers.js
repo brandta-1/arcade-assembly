@@ -191,10 +191,10 @@ const resolvers = {
                     .populate('players', 'username').
                     populate('limit');
 
-                //if the player is already in, return null
+                //if the player is already in
                 if (lobby.players.filter(i => i._id == userId).length > 0) {
                     console.log("already joined")
-                    return lobby;
+                    return null;
                 }
 
                 //add the user to the lobby's data

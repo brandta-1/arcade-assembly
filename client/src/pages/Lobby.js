@@ -7,6 +7,8 @@ import { useMutation } from '@apollo/client';
 import { JOIN, LEAVE } from '../utils/mutations';
 export default function Lobby() {
 
+
+
     const [join] = useMutation(JOIN);
     const [leave] = useMutation(LEAVE);
 
@@ -37,10 +39,15 @@ export default function Lobby() {
 
             console.log(data);
             console.log(data.data.join);
-            setLobby({
-                game: lobby.game,
-                lobby: data.data.join
-            })
+            if (!data.data.join) {
+                console.log("already in")
+            }
+            else {
+                setLobby({
+                    game: lobby.game,
+                    lobby: data.data.join
+                })
+            }
         } catch (err) {
             console.error(err);
         }

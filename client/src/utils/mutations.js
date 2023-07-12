@@ -67,9 +67,11 @@ export const JOIN = gql`
     about
     owner {
       username
+      _id
     }
     players {
       username
+      _id
     }
   }
 }
@@ -83,9 +85,11 @@ mutation Leave($lobbyId: ID!, $username: String!) {
     about
     owner {
       username
+      _id
     }
     players {
       username
+      _id
     }
   }
 }

@@ -3,7 +3,11 @@
 } */
 
 .avatar {
-    height: 300px;
+    max-height: 300px;
+    width: auto;
+    border-radius: 10px;
+    border: 1px solid rgb(60, 60, 60);
+    box-shadow: 0 10px 8px -7px black;
 }
 
 .friendAvatar {
@@ -12,18 +16,24 @@
 
 .profileHeader, .friendCard {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid rgb(60, 60, 60);
     margin: 25px 0;
     border-radius: 20px;
     overflow: hidden;
-    background-color: rgb(80, 79, 79);
+    background-image: linear-gradient(black, rgb(54, 54, 54));
+    padding: 10px;
+    box-shadow: 0 10px 8px -7px black;
 }
 
 .headerText {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
+    padding: 20px;
 }
 
 .friendCard {
@@ -37,7 +47,8 @@
 }
 
 .listButton {
-    min-width: 500px;
+    width: 100%;
+    max-width: 500px;
     margin: 10px auto;
 }
 
@@ -55,8 +66,42 @@
 }
 
 /* ProfileList Page Styling */
+.listHeader {
+    justify-content: space-evenly;
+}
 
 .listAvatar {
     height: 200px;
+    border-radius: 20px;
+    border: 1px solid rgb(60, 60, 60);
+    box-shadow: 0 10px 8px -7px black;
+}
+
+.profileListLinks {
+    text-decoration: none;
+}
+.listHeader {
+    display: flex;
+    color: white;
+}
+
+.listText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.listText h2 {
+    font-style: italic;
+}
+
+.userMetrics {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.userMetrics p {
+    padding: 10px;
 }
 

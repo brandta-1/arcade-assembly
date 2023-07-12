@@ -7,9 +7,17 @@ import '../styles/Signup.css';
 
 const Signup = () => {
 
+  const avatar1 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552';
+  const avatar2 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455'
+  const avatar3 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar5.png?updatedAt=1688305286440';
+  const avatar4 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435';
+  const avatar5 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar7.png?updatedAt=1688305286447'
+  const avatar6 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar2.png?updatedAt=1688305286483'
+  
+
   const [AddUser] = useMutation(ADD_USER);
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', firstName: '', lastName: '', avatarURL: avatar1 });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -18,6 +26,12 @@ const Signup = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleAvatarClick = (avatar, e) => {
+    setUserFormData({ ...userFormData, avatarURL: avatar });
+    const selectedAvatar = e.target.classList[1]; 
+    document.querySelector(".selectedAvatar").innerHTML = `Selection: ${selectedAvatar}`;
   };
 
   const handleFormSubmit = async (event) => {
@@ -32,10 +46,10 @@ const Signup = () => {
 
     try {
       //see login.js for comments
-      const {data} = await AddUser({
+      const { data } = await AddUser({
         variables: { ...userFormData }
       });
-     
+
       const { token } = await data.addUser;
       Auth.login(token);
 
@@ -48,6 +62,9 @@ const Signup = () => {
       username: '',
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
+      avatarURL: ''
     });
   };
 
@@ -61,32 +78,60 @@ const Signup = () => {
         </Alert>
 
         <Form.Group className='m-4 p-1'>
-        <div className="text-center">
-          <Form.Label htmlFor='username'>USERNAME</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter a Username - Use Discord Name if Possible'
-            name='username'
-            onChange={handleInputChange}
-            value={userFormData.username}
-            required
-          />
-        </div>
+          <div className="text-center">
+            <Form.Label htmlFor='username'>FIRST NAME</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='First Name'
+              name='firstName'
+              onChange={handleInputChange}
+              value={userFormData.firstName}
+              required
+            />
+          </div>
+        </Form.Group>
+
+        <Form.Group className='m-4 p-1'>
+          <div className="text-center">
+            <Form.Label htmlFor='username'>LAST NAME</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Last Name'
+              name='lastName'
+              onChange={handleInputChange}
+              value={userFormData.lastName}
+              required
+            />
+          </div>
+        </Form.Group>
+
+        <Form.Group className='m-4 p-1'>
+          <div className="text-center">
+            <Form.Label htmlFor='username'>USERNAME</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter a Username - Use Discord Name if Possible'
+              name='username'
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+            />
+          </div>
           <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className='m-4 p-1'>
-        <div className="text-center">
-          <Form.Label htmlFor='email'>EMAIL</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Enter a Working Email'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-        </div>
+          <div className="text-center">
+            <Form.Label htmlFor='email'>EMAIL</Form.Label>
+            <Form.Control
+              type='email'
+              placeholder='Enter a Working Email'
+              name='email'
+              onChange={handleInputChange}
+              value={userFormData.email}
+              required
+            />
+          </div>
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
@@ -101,9 +146,49 @@ const Signup = () => {
               value={userFormData.password}
               required
             />
-        </div>  
+          </div>
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+
+        <div className='avatarGroup'>
+          <h4>Choose a default avatar: </h4>
+          <div className='avatarWrapper'>
+            <div onClick={(e) => handleAvatarClick(avatar1, e)}>
+              <img className='avatarSelect Avatar1' src={avatar1} />
+            </div>
+
+            <div onClick={(e) => handleAvatarClick(avatar2, e)}>
+              <img className='avatarSelect Avatar2' src={avatar2} />
+            </div>
+
+            <div onClick={(e) => handleAvatarClick(avatar3, e)}>
+              <img className='avatarSelect Avatar3' src={avatar3} />
+            </div>
+
+            <div onClick={(e) => handleAvatarClick(avatar4, e)}>
+              <img className='avatarSelect Avatar4' src={avatar4} />
+            </div>
+
+            <div onClick={(e) => handleAvatarClick(avatar5, e)}>
+              <img className='avatarSelect Avatar5' src={avatar5} />
+            </div>
+
+            <div onClick={(e) => handleAvatarClick(avatar6, e)}>
+              <img className='avatarSelect Avatar6' src={avatar6} />
+            </div>
+          </div>
+
+          <p className='selectedAvatar'></p>
+
+          {/* 
+
+          Nice to have:
+          Add in code to allow the user to select their own image from their device
+          Here is my URL endpoint: https://ik.imagekit.io/ofawn8dpgq/
+           */}
+
+        </div>
+
         <div className="text-center">
           <Button
             disabled={!(userFormData.username && userFormData.email && userFormData.password)}
@@ -112,6 +197,7 @@ const Signup = () => {
             Submit
           </Button>
         </div>
+
       </Form>
     </>
   );

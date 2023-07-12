@@ -16,23 +16,32 @@ const ProfileList = () => {
 
     return (
         <div>
-            <h1>Our {numUsers} Users:</h1>
+            <h3>Arcade Assembly Roster: {numUsers}</h3>
             <hr />
-            <div>
+            <div className='profileListWrapper'>
                 {userData.length === 0 ? (
                     <p>No users yet</p>
-                ) :  (
+                ) : (
                     userData.map((user) => (
 
+                        <Link className='profileListLinks' to={`/profile/${user._id}`}>
+                            <div className='profileHeader listHeader'>
+                                <div className='listText'>
+                                    <h2>{user.username}</h2>
+                                    <h5>{user.firstName} {user.lastName}</h5>
 
-                        <Link to={`/profile/${user._id}`}>
-                        <div className='profileHeader'>
-                        <h2>{user.username}</h2>
-                        <img className='listAvatar' src={user.avatarURL} /> 
-                        </div>
+                                    <hr />
+
+                                    <div className='userMetrics'>
+                                        <p>Friends: {user.friends.length} </p>
+                                        <p>Lobbies: 0 </p>
+                                    </div>
+                                </div>
+                                <img className='listAvatar' src={user.avatarURL} />
+                            </div>
                         </Link>
 
-                        
+
                     ))
                 )}
             </div>

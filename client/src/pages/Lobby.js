@@ -17,7 +17,7 @@ export default function Lobby() {
             console.log(location.state.lobby);
             setLobby(location.state.lobby)
         }
-    }, [location.state]);
+    }, []);
 
     if (!lobby) {
         return (
@@ -67,7 +67,6 @@ export default function Lobby() {
         }
     };
 
-
     return (
         <>
             <img src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
@@ -75,6 +74,10 @@ export default function Lobby() {
             <p>
                 {`${lobby.lobby.owner.username}`}'s Lobby
             </p>
+
+            <h3>About</h3>
+
+            <p>{`${lobby.lobby.about}`}</p>
 
             <h1>Players</h1>
 

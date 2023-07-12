@@ -30,6 +30,7 @@ const typeDefs = gql`
         owner: User
         players: [User]
         limit: Int
+        about: String
     }
 
     type Auth {
@@ -61,8 +62,8 @@ const typeDefs = gql`
     addGame(igdb: String!, cover: String, name: String!, date: Date): Game
 
     #given the ID of a lobby, and a user, add and remove them
-    createLobby(gameId: ID!, userId: ID, limit: Int!): Lobby
-    join(lobbyId: ID!): Lobby
+    createLobby(gameId: ID!, limit: Int!, about: String): Lobby
+    join(lobbyId: ID!, userId: ID): Lobby
     leave(lobbyId: ID!, username: String!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby
 

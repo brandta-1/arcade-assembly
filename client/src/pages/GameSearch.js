@@ -51,16 +51,21 @@ const GameSearch = () => {
     const handleTabClick = async (index) => {
         setActiveTab(index + 1);
         // Navigate to the lobby with game data
-        
+
         try {
             const data = await addGame({ variables: games[index] });
-            console.log(data);
-         } catch (err) {
-             console.error(err);
-         }
-         navigate(
-            `/game/${games[index].id}`, { state: { game: games[index] } });
-     };
+            console.log(data.data.addGame._id);
+
+            navigate(
+                `/game/${games[index].igdb}`, {
+                state: {
+                    game: { ...games[index], _id: data.data.addGame._id }
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     const handleSearchClick = async () => {
         if (!searchTerm) {
@@ -78,8 +83,8 @@ const GameSearch = () => {
 
         //add the game to our database
         try {
-           const data = await addGame({ variables: gameData });
-           console.log(data);
+            const data = await addGame({ variables: gameData });
+            console.log(data);
         } catch (err) {
             console.error(err);
         }
@@ -90,7 +95,7 @@ const GameSearch = () => {
             {
                 state: { game: gameData[0] }
             });
-         
+
     };
 
     return (

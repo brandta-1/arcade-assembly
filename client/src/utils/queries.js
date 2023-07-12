@@ -56,6 +56,7 @@ query Query($igdb: String) {
       username
     }
     limit
+    about
   }
 }
 `;
@@ -75,6 +76,7 @@ query Query($username: String) {
       username
     }
     limit
+    about
   }
 }
 `;

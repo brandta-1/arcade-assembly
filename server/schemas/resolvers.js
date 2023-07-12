@@ -127,16 +127,20 @@ const resolvers = {
         //below notes apply to any mutation that uses context:
         //for the testing version, add "userId" as an argument and replce the context id,
         // you will also need to add that as an argument in the typeDefs
-        createLobby: async (parent, { gameId, limit }, context) => {
+        createLobby: async (parent, { gameId, limit, about }, context) => {
+
+            console.log(limit);
             //try to create a lobby with a game and user ID
             //the owner has their Id set, and also added to the list of players
             const theId = context.user._id;
+
             try {
                 const lobby = await Lobby.create({
                     game: gameId,
                     owner: theId,
                     players: [theId],
-                    limit: limit
+                    limit: limit,
+                    about: about
                 });
 
                 if (lobby) {
@@ -157,7 +161,8 @@ const resolvers = {
                     .populate('game')
                     .populate('owner', 'username')
                     .populate('players', 'username')
-                    .populate('limit');
+                    .populate('limit')
+                    .populate('about');
 
                 return lobbyPop;
             } catch (err) {
@@ -170,22 +175,38 @@ const resolvers = {
         //the lobbyId variable will be available bc the lobbies should be rendered using getGameLobbies or getPlayerLobbies
         //see prior notes for context parameter
         //WILL RETURN NULL IF ALREADY JOINED
-        join: async (parent, { lobbyId }, context) => {
+        join: async (parent, { lobbyId, userId }, context) => {
             //try to find the current lobby, and let a player join
 
-            const userId = context.user._id;
+            //const userId = context.user._id;
 
             try {
                 let lobby = await Lobby.findOne({ _id: lobbyId })
                     .populate('game', '-lobbies')
                     .populate('owner', 'username')
-                    .populate('players', 'username');
+                    .populate('players', 'username')
+                    .populate('limit');
+                    console.log(lobby);
+                    
+                    // console.log(
+                    //     "length:", lobby.players.length,
+                    //     "liimt:", lobby.limit
+                    // )
+
+                    //if the lobby is full
+                    if(lobby.players.length == lobby.limit){
+                        console.log("full")
+                        return lobby;
+                    }
+
 
                 //if the player is already in, return null
                 if (lobby.players.filter(i => i._id == userId).length > 0) {
                     console.log("already joined")
-                    return null;
+                    return lobby;
                 }
+
+                
 
                 //add the user to the lobby's data
                 lobby.players.addToSet({ _id: userId });

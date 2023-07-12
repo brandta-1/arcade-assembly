@@ -1,12 +1,9 @@
 import { ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export function LobbyArray(props) {
+export function LobbyArray({lobbies, game}) {
 
     const navigate = useNavigate();
-
-    const lobbies = props?.lobbies?.getGameLobbies;
-    const game = props?.game;
 
     const handleClick = (lobby, index) => {
 

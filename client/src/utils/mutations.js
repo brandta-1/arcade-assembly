@@ -40,8 +40,8 @@ export const ADD_GAME = gql`
 
 export const CREATE_LOBBY = gql`
 
-mutation CreateLobby($gameId: ID!, $userId: ID, $limit: Int!) {
-  createLobby(gameId: $gameId, userId: $userId, limit: $limit) {
+mutation CreateLobby($gameId: ID!, $limit: Int!, $about: String) {
+  createLobby(gameId: $gameId, limit: $limit, about: $about) {
     _id
     game {
       cover
@@ -54,6 +54,7 @@ mutation CreateLobby($gameId: ID!, $userId: ID, $limit: Int!) {
       username
     }
     limit
+    about
   }
 }
 `;
@@ -63,6 +64,7 @@ export const JOIN = gql`
     join(lobbyId: $lobbyId) {
       _id
     limit
+    about
     owner {
       username
     }

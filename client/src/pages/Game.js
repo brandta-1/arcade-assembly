@@ -4,6 +4,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { LobbyArray } from '../components/LobbyArray';
+import { LobbyForm } from '../components/LobbyForm';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_GAME_LOBBIES } from '../utils/queries';
 import {CREATE_LOBBY} from '../utils/mutations';
@@ -57,6 +58,8 @@ const Game = () => {
         }
     }
 
+    console.log(lobbies);
+
     return (
         <Container className="mt-5">
             <Row className="justify-content-md-start">
@@ -88,7 +91,7 @@ const Game = () => {
                 </Col>
             </Row>
 
-            <button onClick={create}>create</button>
+            <LobbyForm game={game} />
 
             <LobbyArray lobbies={lobbies} game={game} />
 

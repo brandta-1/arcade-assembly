@@ -54,15 +54,17 @@ query Query($igdb: String) {
     }
     players {
       username
+      _id
     }
     limit
+    about
   }
 }
 `;
 
 export const GET_USER_LOBBIES = gql`
-query Query($username: String) {
-  getUserLobbies(username: $username) {
+query Query($username: String, $userId: ID) {
+  getUserLobbies(username: $username, userId: $userId) {
     _id
     game {
       cover
@@ -72,9 +74,11 @@ query Query($username: String) {
       username
     }
     players {
+      _id
       username
     }
     limit
+    about
   }
 }
 `;

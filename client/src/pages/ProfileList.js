@@ -14,6 +14,7 @@ const ProfileList = () => {
         return <p>Profiles Loading...</p>
     }
 
+    console.log(userData);
     return (
         <div>
             <h3>Arcade Assembly Roster: {numUsers}</h3>

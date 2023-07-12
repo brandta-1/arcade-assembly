@@ -63,8 +63,8 @@ const resolvers = {
 
         //addUser will be called when the user signs up, see HW21
         //TODO profile pic
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
+        addUser: async (parent, { username, email, password, firstName, lastName, avatarURL }) => {
+            const user = await User.create({ username, email, password, firstName, lastName, avatarURL});
             const token = signToken(user);
             return { token, user };
         },

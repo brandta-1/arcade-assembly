@@ -64,7 +64,7 @@ const Profile = () => {
             {/* Link to see all users in our DB */}
             <div>
               <Link to={`/profilesList`}>
-              <button>See All Users</button>
+                <button>See All Users</button>
               </Link>
             </div>
           </div>
@@ -75,27 +75,27 @@ const Profile = () => {
       label: 'Lobbies',
       content:
 
-      <p>Lobbies data here</p>
-        // (
-        //   <div>
-        //     {lobbiesData.length === 0 ? (
-        //       <p>No lobbies for this user</p>
-        //     ) : (
-        //       <div>
-        //         <h1> {lobbiesData.game.name} </h1>
-        //         <img src={lobbiesData.game.cover} />
-        //         <p>Owner: {lobbiesData.owner.username}</p>
-        //         <div>
-        //           <h4>Players: </h4>
-        //           {lobbiesData.players.map((player) => (
-        //             <p>{player.username}</p>
-        //           ))}
-        //           <p>Lobby Size: {lobbiesData.limit} </p>
-        //         </div>
-        //       </div>        
-        //     )}
-        //   </div>
-        // )
+        <p>Lobbies data here</p>
+      // (
+      //   <div>
+      //     {lobbiesData.length === 0 ? (
+      //       <p>No lobbies for this user</p>
+      //     ) : (
+      //       <div>
+      //         <h1> {lobbiesData.game.name} </h1>
+      //         <img src={lobbiesData.game.cover} />
+      //         <p>Owner: {lobbiesData.owner.username}</p>
+      //         <div>
+      //           <h4>Players: </h4>
+      //           {lobbiesData.players.map((player) => (
+      //             <p>{player.username}</p>
+      //           ))}
+      //           <p>Lobby Size: {lobbiesData.limit} </p>
+      //         </div>
+      //       </div>        
+      //     )}
+      //   </div>
+      // )
     },
     { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
   ];
@@ -103,7 +103,7 @@ const Profile = () => {
   return (
     <div className='profileContainer'>
       <div className='profileHeader'>
-        <img className='avatar' src={userData.avatarURL} />
+          <img className='avatar' src={userData.avatarURL} />
         <div className='headerText'>
           <h1> {userData.username} </h1>
           <hr />

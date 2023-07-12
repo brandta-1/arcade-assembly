@@ -54,7 +54,7 @@ const typeDefs = gql`
 
     #self explanatory
     #TODO profile pic    
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, firstName: String, lastName: String, avatarURL: String): Auth
     login(email: String!, password: String!): Auth
 
     #add a game to our DB if the user creates a lobby for it

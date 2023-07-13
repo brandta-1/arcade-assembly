@@ -33,9 +33,16 @@ const resolvers = {
 
         //TODO: getUserLobbies and getGameLobbies could be rewritten into one getLobbies query
 
-        getUserLobbies: async (parent, { username }) => {
+        getUserLobbies: async (parent, { username, userId }, context) => {
             //same logic from getGameLobbies query, but for users
-            const user = await User.findOne({ username });
+            let args = { _id: userId };
+            if(username) {
+                args = {username}
+            }
+            if(!args._id){
+                args._id = context.user._id;
+            }
+            const user = await User.findOne(args);
             if (user) {
                 return await lobbyArray(user);
             }
@@ -127,7 +134,7 @@ const resolvers = {
         //below notes apply to any mutation that uses context:
         //for the testing version, add "userId" as an argument and replce the context id,
         // you will also need to add that as an argument in the typeDefs
-        createLobby: async (parent, { gameId, limit }, context) => {
+        createLobby: async (parent, { gameId, limit, about }, context) => {
             //try to create a lobby with a game and user ID
             //the owner has their Id set, and also added to the list of players
             const theId = context.user._id;
@@ -136,7 +143,8 @@ const resolvers = {
                     game: gameId,
                     owner: theId,
                     players: [theId],
-                    limit: limit
+                    limit: limit,
+                    about: about
                 });
 
                 if (lobby) {
@@ -157,7 +165,8 @@ const resolvers = {
                     .populate('game')
                     .populate('owner', 'username')
                     .populate('players', 'username')
-                    .populate('limit');
+                    .populate('limit')
+                    .populate('about');
 
                 return lobbyPop;
             } catch (err) {
@@ -179,9 +188,10 @@ const resolvers = {
                 let lobby = await Lobby.findOne({ _id: lobbyId })
                     .populate('game', '-lobbies')
                     .populate('owner', 'username')
-                    .populate('players', 'username');
+                    .populate('players', 'username').
+                    populate('limit');
 
-                //if the player is already in, return null
+                //if the player is already in
                 if (lobby.players.filter(i => i._id == userId).length > 0) {
                     console.log("already joined")
                     return null;
@@ -296,7 +306,7 @@ async function lobbyArray(x) {
         await Lobby.findById(i.toHexString())
             .populate('game')
             .populate('owner', 'username')
-            .populate('players', 'username')
+            .populate('players', 'username _id')
     ));
 
     console.log(lobbies);

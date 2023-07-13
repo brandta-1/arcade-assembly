@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Navigate, useParams, useNavigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
+import { LobbyArray } from '../components/LobbyArray';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +14,12 @@ const Profile = () => {
   console.log(userId);
 
   const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
+  const {loading: lobbyLoading, data: userLobbyData} = useQuery(GET_USER_LOBBIES, {variables: {userId: userId}})
+  
+  
+  
+  //getUserLobbies({ variables: { userId } })
+  
   console.log(userQueryData?.me);
   console.log(userQueryData?.getUser);
   // const { loading: lobbiesLoading, data: userLobbiesData } = useQuery(GET_USER_LOBBIES, { variables: { username } })
@@ -20,6 +27,12 @@ const Profile = () => {
   const userData = userQueryData?.getUser || userQueryData?.me || {};
   console.log("User Data", userData);
 
+  const userLobbies = userLobbyData || {}
+  console.log("user lobbies", userLobbies)
+
+  
+    
+  
   // const lobbiesData = userLobbiesData?.getUserLobbies;
   // console.log("Lobbies Data", lobbiesData);
 
@@ -29,7 +42,7 @@ const Profile = () => {
     { id: 3, show: false },
   ]);
 
-  if (userLoading) {
+  if (userLoading || lobbyLoading) {
     return <div>Profile Loading...</div>
   }
   // if (lobbiesLoading) {
@@ -37,6 +50,7 @@ const Profile = () => {
   // }
 
   const handleClick = (id) => {
+
     setShowList((prevLists) =>
       prevLists.map((list) =>
         list.id === id ? { ...list, show: !list.show } : list
@@ -81,32 +95,12 @@ const Profile = () => {
       id: 2,
       label: 'Lobbies',
       content:
-
-        <p>Lobbies data here</p>
-      // (
-      //   <div>
-      //     {lobbiesData.length === 0 ? (
-      //       <p>No lobbies for this user</p>
-      //     ) : (
-      //       <div>
-      //         <h1> {lobbiesData.game.name} </h1>
-      //         <img src={lobbiesData.game.cover} />
-      //         <p>Owner: {lobbiesData.owner.username}</p>
-      //         <div>
-      //           <h4>Players: </h4>
-      //           {lobbiesData.players.map((player) => (
-      //             <p>{player.username}</p>
-      //           ))}
-      //           <p>Lobby Size: {lobbiesData.limit} </p>
-      //         </div>
-      //       </div>        
-      //     )}
-      //   </div>
-      // )
+        <LobbyArray lobbies={userLobbyData} game={"profile"}/>
+        
     },
     { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
   ];
-
+  
   return (
     <div className='profileContainer'>
        <div className="back-button" onClick={goBack}>

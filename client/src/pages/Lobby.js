@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { setImage } from '../utils/helpers';
 import { useMutation } from '@apollo/client';
 import { JOIN, LEAVE } from '../utils/mutations';
 export default function Lobby() {
+
+
 
     const [join] = useMutation(JOIN);
     const [leave] = useMutation(LEAVE);
@@ -33,10 +36,18 @@ export default function Lobby() {
                     lobbyId: lobby.lobby._id,
                 }
             });
-            setLobby({
-                game: lobby.game,
-                lobby: data.data.join
-            })
+
+            console.log(data);
+            console.log(data.data.join);
+            if (!data.data.join) {
+                console.log("already in")
+            }
+            else {
+                setLobby({
+                    game: lobby.game,
+                    lobby: data.data.join
+                })
+            }
         } catch (err) {
             console.error(err);
         }
@@ -67,6 +78,7 @@ export default function Lobby() {
         }
     };
 
+    console.log(lobby.lobby.players);
 
     return (
         <>
@@ -76,15 +88,24 @@ export default function Lobby() {
                 {`${lobby.lobby.owner.username}`}'s Lobby
             </p>
 
+            <h3>About</h3>
+
+            <p>{`${lobby.lobby.about}`}</p>
+
             <h1>Players</h1>
 
             <ul>
                 {lobby.lobby.players.map((player, i) => {
 
                     return (
-                        <li key={i}> {player.username} <button onClick={() => kick(player.username)}>
-                            kick
-                        </button></li>
+                        <li key={i}>
+                            <Link className='profileListLinks' to={`/profile/${player._id}`}>
+                                {player.username}
+                            </Link>
+                            <button onClick={() => kick(player.username)}>
+                                kick
+                            </button>
+                        </li>
                     )
                 })}
             </ul>

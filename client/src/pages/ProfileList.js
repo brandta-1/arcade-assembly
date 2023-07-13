@@ -22,6 +22,7 @@ const ProfileList = () => {
         return <p>Profiles Loading...</p>
     }
 
+    console.log(userData);
     return (
         <div>
             <div className="back-button" onClick={goBack}>

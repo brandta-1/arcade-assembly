@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
 import { LobbyArray } from '../components/LobbyArray';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Profile.css'
 
 const Profile = () => {
   const { userId } = useParams();
+  const navigate = useNavigate();
   console.log(userId);
 
   const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
@@ -55,6 +58,10 @@ const Profile = () => {
     );
   };
 
+  const goBack = () => {
+    navigate(-1);
+  }
+
   const listContent = [
     {
       id: 1,
@@ -96,6 +103,10 @@ const Profile = () => {
   
   return (
     <div className='profileContainer'>
+       <div className="back-button" onClick={goBack}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+        <span>Go Back</span>
+      </div>
       <div className='profileHeader'>
           <img className='avatar' src={userData.avatarURL} />
         <div className='headerText'>

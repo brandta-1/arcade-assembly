@@ -1,6 +1,6 @@
 .game-image {
-    width: 600px !important;
-    height: 400px !important;
+    width: 500px !important;
+    height: auto !important;
 }
 
 .game-name {
@@ -37,4 +37,60 @@
     font-weight: 600;
     margin-left: 10px;
     letter-spacing: .2px;
+}
+
+.lobby-list {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.lobby-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.lobby-owner {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.lobby-about {
+    font-size: 24px;
+}
+
+.lobby-about-description {
+    margin-bottom: 20px;
+}
+
+.lobby-players {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.player-list {
+    list-style-type: none;
+}
+
+.player-list li {
+    padding-bottom: 40px;
+}
+
+.profileListLinks {
+    color: forestgreen;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.kick-btn {
+    float: right;
+}
+
+.join-btn {
+    position: relative;
+    left: 45%;
+    margin-top: 120px;
 }

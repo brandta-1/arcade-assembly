@@ -118,13 +118,15 @@ export default function Lobby() {
 
                     return (
                         <li key={i}>
-                            <Link className='profileListLinks' to={`/profile/${player._id}`}>
-                                {player.username}
-                            </Link>
-                            <button className='kick-btn' onClick={() => kick(player.username)}>
-                                Kick
-                            </button>
-                        </li>
+                        <div className="player-container">
+                          <Link className='profileListLinks' to={`/profile/${player._id}`}>
+                            {player.username}
+                          </Link>
+                          <button className='kick-btn' onClick={() => kick(player.username)}>
+                            Kick
+                          </button>
+                        </div>
+                      </li>
                     )
                 })}
             </ul>

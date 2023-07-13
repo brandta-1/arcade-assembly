@@ -53,44 +53,70 @@
 
 .lobby-owner {
     text-align: center;
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 .lobby-about {
-    font-size: 24px;
+    font-size: 26px;
+    margin-bottom: 30px;
 }
 
 .lobby-about-description {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.040);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .lobby-players {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 26px;
+    margin-bottom: 30px;
 }
 
 .player-list {
     list-style-type: none;
+    padding-right: 30px;
+    padding-top: 22px;
+    background-color: rgba(255, 255, 255, 0.040);
+    border-radius: 14px;
 }
 
-.player-list li {
-    padding-bottom: 40px;
-}
+.player-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
 
-.profileListLinks {
-    color: forestgreen;
+  .profileListLinks {
+    color: rgb(41, 173, 41);
     font-size: 17px;
     font-weight: 500;
+    flex: 0 0 auto;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease-in-out; 
 }
 
+.profileListLinks:hover {
+    transform: scale(1.1); 
+}
+
+
 .kick-btn {
-    float: right;
+    margin-bottom: 25px !important;
+    font-weight: 500;
 }
 
 .join-btn {
     position: relative;
-    left: 45%;
-    margin-top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: -10px !important;
+    font-weight: 500;
 }

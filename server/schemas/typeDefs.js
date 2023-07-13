@@ -2,7 +2,6 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
-    scalar Date
     #TODO: profile pic
     type User {
         _id: ID!
@@ -21,7 +20,7 @@ const typeDefs = gql`
         cover: String
         name: String!
         lobbies: [Lobby]
-        date: Date
+        date: Int
     }
     
     type Lobby{
@@ -48,6 +47,7 @@ const typeDefs = gql`
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String, userId: ID): [Lobby]
         getUsers: [User]
+        getGame(igdb: String): Game
         
     }
 
@@ -59,7 +59,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     #add a game to our DB if the user creates a lobby for it
-    addGame(igdb: String!, cover: String, name: String!, date: Date): Game
+    addGame(igdb: String!, cover: String, name: String!, date: Int): Game
 
     #given the ID of a lobby, and a user, add and remove them
     createLobby(gameId: ID!, userId: ID, limit: Int!, about: String): Lobby

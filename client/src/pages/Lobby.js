@@ -70,10 +70,15 @@ export default function Lobby() {
                 console.log("youre not the leader")
             } else {
                 console.log(`${username} kicked`)
+                console.log(data.data.leave);
                 setLobby({
                     game: lobby.game,
                     lobby: data.data.leave
                 })
+                if(data.data.leave.players.length == 0){
+                    console.log("empty");
+                    navigate(-1);
+                }
             }
 
         } catch (err) {
@@ -87,15 +92,17 @@ export default function Lobby() {
         navigate(-1);
     };
 
+    console.log(lobby.game);
+
     return (
         <>
             <div className="back-button" onClick={goBack}>
                 <FontAwesomeIcon icon={faArrowLeft} />
                 <span>Go Back</span>
             </div>
-            
-            <img className='lobby-img' src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
-
+            <Link to={`/game/${lobby.game.igdb}`}>
+                <img className='lobby-img' src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
+            </Link>
             <p className='lobby-owner'>
                 {`${lobby.lobby.owner.username}`}'s Lobby
             </p>

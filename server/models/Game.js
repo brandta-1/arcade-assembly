@@ -14,7 +14,7 @@ const gameSchema = new Schema(
             required: true,
         },
         date: {
-            type: Date
+            type: Number
         },
         lobbies: [
             {

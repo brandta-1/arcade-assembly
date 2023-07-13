@@ -44,6 +44,18 @@ query GetUser($userId: ID, $username: String) {
 }
 `;
 
+export const GET_GAME = gql`
+query getGame($igdb: String) {
+  getGame(igdb: $igdb) {
+    _id
+    cover
+    name
+    date
+    igdb
+  }
+}
+`;
+
 export const GET_GAME_LOBBIES = gql`
 
 query Query($igdb: String) {
@@ -69,6 +81,7 @@ query Query($username: String, $userId: ID) {
     game {
       cover
       name
+      igdb
     }
     owner {
       username

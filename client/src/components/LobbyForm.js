@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { CREATE_LOBBY } from '../utils/mutations';
 
-export function LobbyForm({game}) {
+export function LobbyForm({game, onSubmit}) {
     console.log(game);
 
     const [createLobby] = useMutation(CREATE_LOBBY);
@@ -38,6 +38,9 @@ export function LobbyForm({game}) {
                     about: formData.about
                 }
             });
+
+            onSubmit(data);
+            
         } catch (err) {
             console.error(err);
         }

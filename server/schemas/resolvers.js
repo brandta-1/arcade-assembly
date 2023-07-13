@@ -48,6 +48,10 @@ const resolvers = {
             }
         },
 
+        getGame: async (parent, { igdb }) => {
+            return await Game.findOne({ igdb });
+        },
+
         getGameLobbies: async (parent, { igdb }) => {
             //check db for game, returns an empty array if the game is not in our db
             const game = await Game.find({ igdb });

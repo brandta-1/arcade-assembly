@@ -66,36 +66,7 @@ const GameSearch = () => {
             console.error(err);
         }
     };
-    const handleSearchClick = async () => {
-        if (!searchTerm) {
-            setMessage('Please enter a search term');
-            return;
-        }
-
-        const gameData = await searchGames(searchTerm);
-        console.log(gameData)
-        if (!gameData || !Array.isArray(gameData) || gameData.length === 0) {
-            setMessage('No results found');
-            setGames([]);
-            return;
-        }
-
-        //add the game to our database
-        try {
-           const data = await addGame({ variables: gameData });
-           console.log(data);
-        } catch (err) {
-            console.error(err);
-        }
-
-        setGames(gameData);
-        setMessage('');
-        navigate(`/game/${gameData[0].name}`,
-            {
-                state: { game: gameData[0] }
-            });
-         
-    };
+   
 
     return (
         <Container className="app-header-search">
@@ -110,7 +81,7 @@ const GameSearch = () => {
                             onChange={handleInputChange}
                             className="search-input search-input-shifted"
                         />
-                        <div className="icon-container" onClick={handleSearchClick}>
+                        <div className="icon-container">
                             <FontAwesomeIcon icon={faSearch} className="search-icon" />
                         </div>
                     </div>

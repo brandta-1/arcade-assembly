@@ -48,6 +48,7 @@ const typeDefs = gql`
         getGameLobbies(igdb: String): [Lobby]
         getUserLobbies(username: String, userId: ID): [Lobby]
         getUsers: [User]
+        getGame(igdb: String): Game
         
     }
 

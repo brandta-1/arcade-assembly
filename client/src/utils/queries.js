@@ -44,6 +44,17 @@ query GetUser($userId: ID, $username: String) {
 }
 `;
 
+export const GET_GAME = gql`
+query getGame($igdb: String) {
+  getGame(igdb: $igdb) {
+    _id
+    cover
+    name
+    date
+  }
+}
+`;
+
 export const GET_GAME_LOBBIES = gql`
 
 query Query($igdb: String) {

@@ -1,44 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { LobbyArray } from '../components/LobbyArray';
 import { LobbyForm } from '../components/LobbyForm';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { GET_GAME_LOBBIES } from '../utils/queries';
-import {CREATE_LOBBY} from '../utils/mutations';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
+import { GET_GAME_LOBBIES, GET_GAME } from '../utils/queries';
 
 import '../styles/Lobby.css'
 
 const Game = () => {
 
-    const [game, setGame] = useState(null);
-    const location = useLocation();
     const navigate = useNavigate();
+    const { gameId } = useParams();
 
-    const [createLobby] = useMutation(CREATE_LOBBY);
+    const { loading: lobbyLoading, data: lobbyData } = useQuery(GET_GAME_LOBBIES, { variables: { igdb: gameId } })
 
-    const [getGameLobbies, { data : lobbies }] = useLazyQuery(GET_GAME_LOBBIES);
+    const { loading: gameLoading, data: gameData } = useQuery(GET_GAME, { variables: { igdb: gameId } })
 
-   
-    useEffect(() => {
-        if (game) {
-            getGameLobbies({
-                variables: { igdb: game.igdb }
-            })
-        }
-    }, [game])
+    const lobbies = lobbyData?.getGameLobbies || {};
 
+    console.log(lobbies);
+    //only say lobbies if addgame has not been called, otherwise you need 
+    const [lobbyState, setLobbyState] = useState(lobbies);
 
     useEffect(() => {
-        // Get game data from the state
-        if (location.state && location.state.game) {
-            setGame(location.state.game);
-        }
-    }, [location.state]);
+        //TODO useeffect
+        setLobbyState(lobbies)
+    }, [lobbies]);
 
-    if (!game) {
+    const game = gameData?.getGame || {};
+
+    function addLobby({ data }) {
+        setLobbyState((currLobbies) => {
+            return [
+                ...currLobbies,
+                data.createLobby
+            ]
+        })
+    }
+
+    if (gameLoading || lobbyLoading) {
         return <p>Loading...</p>;
     }
 
@@ -46,19 +49,9 @@ const Game = () => {
         navigate(-1);
     }
 
-    const create = async () => {
-        try {
-            const data = await createLobby({
-                variables: {
-                    
-                }
-            });
-        }catch (err) {
-            console.error(err);
-        }
-    }
-
+    console.log("LOBBIES VS STATE");
     console.log(lobbies);
+    console.log(lobbyState);
 
     return (
         <Container className="mt-5">
@@ -91,9 +84,9 @@ const Game = () => {
                 </Col>
             </Row>
 
-            <LobbyForm game={game} />
+            <LobbyForm game={game} onSubmit={addLobby} />
 
-            <LobbyArray lobbies={lobbies} game={game} />
+            <LobbyArray lobbies={lobbyState} game={game} />
 
         </Container>
     );

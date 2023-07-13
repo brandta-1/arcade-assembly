@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
 import { LobbyArray } from '../components/LobbyArray';

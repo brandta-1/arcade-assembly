@@ -6,7 +6,12 @@ export function LobbyArray(props) {
 
     const navigate = useNavigate();
 
-    const lobbies = props?.lobbies?.getGameLobbies || props?.lobbies?.getUserLobbies;
+    console.log("PROPS",props);
+
+    const lobbies = props?.lobbies?.getUserLobbies || props?.lobbies
+    console.log("LOBBIES", lobbies)
+
+
     let game = props?.game;
 
     const handleClick = (lobby, index) => {
@@ -27,7 +32,8 @@ export function LobbyArray(props) {
 
     };
    
-    if (!lobbies) {
+    if (!lobbies || lobbies == {}) {
+        console.log(lobbies);
         return (
             <p>loading...</p>
         )

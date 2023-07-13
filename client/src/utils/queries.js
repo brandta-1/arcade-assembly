@@ -51,6 +51,7 @@ query getGame($igdb: String) {
     cover
     name
     date
+    igdb
   }
 }
 `;
@@ -80,6 +81,7 @@ query Query($username: String, $userId: ID) {
     game {
       cover
       name
+      igdb
     }
     owner {
       username

@@ -87,15 +87,17 @@ export default function Lobby() {
         navigate(-1);
     };
 
+    console.log(lobby.game);
+
     return (
         <>
             <div className="back-button" onClick={goBack}>
                 <FontAwesomeIcon icon={faArrowLeft} />
                 <span>Go Back</span>
             </div>
-            
-            <img className='lobby-img' src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
-
+            <Link to={`/game/${lobby.game.igdb}`}>
+                <img className='lobby-img' src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
+            </Link>
             <p className='lobby-owner'>
                 {`${lobby.lobby.owner.username}`}'s Lobby
             </p>

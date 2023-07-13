@@ -29,7 +29,7 @@ export const ADD_USER = gql`
 
 export const ADD_GAME = gql`
 
-  mutation AddGame($igdb: String!, $cover: String, $name: String!, $date: Date) {
+  mutation AddGame($igdb: String!, $cover: String, $name: String!, $date: Int) {
     addGame(igdb: $igdb, cover: $cover, name: $name, date: $date) {
       igdb
       _id

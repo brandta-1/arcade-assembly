@@ -8,33 +8,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Profile.css'
 
+import { useMutation } from '@apollo/client';
+import { ADD_FRIEND } from '../utils/mutations';
+
+import Auth from '../utils/auth'
+
 const Profile = () => {
+
   const { userId } = useParams();
   const navigate = useNavigate();
-  console.log(userId);
-
+  const currentUserId = Auth.getProfile().data._id
   const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
-  const {loading: lobbyLoading, data: userLobbyData} = useQuery(GET_USER_LOBBIES, {variables: {userId: userId}})
-  
-  
-  
-  //getUserLobbies({ variables: { userId } })
-  
-  console.log(userQueryData?.me);
-  console.log(userQueryData?.getUser);
-  // const { loading: lobbiesLoading, data: userLobbiesData } = useQuery(GET_USER_LOBBIES, { variables: { username } })
-
+  const { loading: lobbyLoading, data: userLobbyData } = useQuery(GET_USER_LOBBIES, { variables: { userId: userId } })
   const userData = userQueryData?.getUser || userQueryData?.me || {};
-  console.log("User Data", userData);
-
   const userLobbies = userLobbyData || {}
-  console.log("user lobbies", userLobbies)
 
-  
-    
-  
-  // const lobbiesData = userLobbiesData?.getUserLobbies;
-  // console.log("Lobbies Data", lobbiesData);
+  const [addFriend] = useMutation(ADD_FRIEND);
+  const addFriendButton = async (userId, friendId) => {
+
+    try {
+      const { data } = await addFriend({
+        variables: {
+          userId: userId,
+          friendId: friendId
+        }
+      })
+      // redirect back to /me route 
+      window.location.assign('/me')
+    } catch (err) {
+      console.log("Friend not added")
+    }
+  }
+
+  const friendButton = () => {
+    if (userId === currentUserId || userId === undefined) {
+      return ""
+    }
+    // change to a span rather than a button
+    return <span onClick={() => addFriendButton(currentUserId, userId)}>Add Friend</span>
+  }
 
   const [showList, setShowList] = useState([
     { id: 1, show: false },
@@ -45,9 +57,6 @@ const Profile = () => {
   if (userLoading || lobbyLoading) {
     return <div>Profile Loading...</div>
   }
-  // if (lobbiesLoading) {
-  //   return <div>Lobbies Loading...</div>
-  // }
 
   const handleClick = (id) => {
 
@@ -95,20 +104,25 @@ const Profile = () => {
       id: 2,
       label: 'Lobbies',
       content:
-        <LobbyArray lobbies={userLobbyData} game={"profile"}/>
-        
+        <LobbyArray lobbies={userLobbyData} game={"profile"} />
+
     },
     { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
   ];
-  
+
   return (
     <div className='profileContainer'>
-       <div className="back-button" onClick={goBack}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        <span>Go Back</span>
+
+      <div className='profileAction'>
+        <div className="back-button" onClick={goBack}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+          <span>Go Back</span>
+        </div>
+        <div className='addFriendButton'> {friendButton()} </div>
       </div>
+
       <div className='profileHeader'>
-          <img className='avatar' src={userData.avatarURL} />
+        <img className='avatar' src={userData.avatarURL} />
         <div className='headerText'>
           <h1> {userData.username} </h1>
           <hr />

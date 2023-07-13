@@ -7,7 +7,7 @@ const resolvers = {
     Query: {
         //get the logged-in user
         me: async (parent, args, context) => {
-            return await User.findOne({ _id: context.user._id });
+            return await User.findOne({ _id: context.user._id }).populate('friends');
         },
 
         //get any user that isnt the logged-in user

@@ -65,6 +65,23 @@
     justify-content: start;
 }
 
+.profileAction {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addFriendButton {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.4s ease-in-out;
+}
+
+.addFriendButton:hover {
+    transform: scale(1.14); 
+}
+
 /* ProfileList Page Styling */
 .listHeader {
     justify-content: space-evenly;

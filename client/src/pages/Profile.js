@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
 import { LobbyArray } from '../components/LobbyArray';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,7 @@ const Profile = () => {
   const currentUserId = Auth.getProfile().data._id
   const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
   const { loading: lobbyLoading, data: userLobbyData } = useQuery(GET_USER_LOBBIES, { variables: { userId: userId } })
+
   const userData = userQueryData?.getUser || userQueryData?.me || {};
   const userLobbies = userLobbyData || {}
 
@@ -122,7 +123,9 @@ const Profile = () => {
       id: 2,
       label: 'Lobbies',
       content:
+
         <LobbyArray lobbies={userLobbyData} game={"profile"} />
+
 
     },
     { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
@@ -137,6 +140,7 @@ const Profile = () => {
           <span>Go Back</span>
         </div>
         <div className='addFriendButton'> {friendButton()} </div>
+
       </div>
 
       <div className='profileHeader'>

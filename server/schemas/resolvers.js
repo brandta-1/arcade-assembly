@@ -7,7 +7,7 @@ const resolvers = {
     Query: {
         //get the logged-in user
         me: async (parent, args, context) => {
-            return await User.findOne({ _id: context.user._id });
+            return await User.findOne({ _id: context.user._id }).populate('friends');
         },
 
         //get any user that isnt the logged-in user
@@ -88,6 +88,13 @@ const resolvers = {
                 ).populate('friends')
         },
 
+        removeFriend: async (parent, {userId, friendId}) => {
+            return User.findOneAndUpdate(
+                {_id: userId},
+                {$pull: {friends: friendId}},
+                { new: true, runValidators: true, }
+                ).populate('friends')
+        },
 
         //login will be called when a user logs in, see HW21
         login: async (parent, { email, password }) => {

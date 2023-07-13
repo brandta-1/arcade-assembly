@@ -14,7 +14,8 @@
     height: 125px;
 }
 
-.profileHeader, .friendCard {
+.profileHeader,
+.friendCard {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -37,6 +38,7 @@
 }
 
 .friendCard {
+    position: relative;
     margin: 15px auto;
     width: 75%;
 }
@@ -65,6 +67,31 @@
     justify-content: start;
 }
 
+.profileAction {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addFriendButton {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.4s ease-in-out;
+}
+
+.addFriendButton {
+    transform: scale(1.14);
+}
+
+.removeFriend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 /* ProfileList Page Styling */
 .listHeader {
     justify-content: space-evenly;
@@ -80,6 +107,7 @@
 .profileListLinks {
     text-decoration: none;
 }
+
 .listHeader {
     display: flex;
     color: white;
@@ -104,4 +132,3 @@
 .userMetrics p {
     padding: 10px;
 }
-

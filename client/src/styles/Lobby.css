@@ -1,6 +1,6 @@
 .game-image {
-    width: 600px !important;
-    height: 400px !important;
+    width: 500px !important;
+    height: auto !important;
 }
 
 .game-name {

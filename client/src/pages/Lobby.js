@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom';
 import { setImage } from '../utils/helpers';
 import { useMutation } from '@apollo/client';
 import { JOIN, LEAVE } from '../utils/mutations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import '../styles/Lobby.css';
+
 export default function Lobby() {
-
-
 
     const [join] = useMutation(JOIN);
     const [leave] = useMutation(LEAVE);
 
     const location = useLocation();
+    const navigate = useNavigate();
     const [lobby, setLobby] = useState(null);
 
     useEffect(() => {
@@ -80,21 +83,30 @@ export default function Lobby() {
 
     console.log(lobby.lobby.players);
 
+    const goBack = () => {
+        navigate(-1);
+    };
+
     return (
         <>
-            <img src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
+            <div className="back-button" onClick={goBack}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                <span>Go Back</span>
+            </div>
+            
+            <img className='lobby-img' src={`${setImage(lobby.game.cover, null, 2)}`} ></img>
 
-            <p>
+            <p className='lobby-owner'>
                 {`${lobby.lobby.owner.username}`}'s Lobby
             </p>
 
-            <h3>About</h3>
+            <h3 className='lobby-about'>About</h3>
 
-            <p>{`${lobby.lobby.about}`}</p>
+            <p className='lobby-about-description'>{`${lobby.lobby.about}`}</p>
 
-            <h1>Players</h1>
+            <h1 className='lobby-players'>Players</h1>
 
-            <ul>
+            <ul className='player-list'>
                 {lobby.lobby.players.map((player, i) => {
 
                     return (
@@ -102,16 +114,16 @@ export default function Lobby() {
                             <Link className='profileListLinks' to={`/profile/${player._id}`}>
                                 {player.username}
                             </Link>
-                            <button onClick={() => kick(player.username)}>
-                                kick
+                            <button className='kick-btn' onClick={() => kick(player.username)}>
+                                Kick
                             </button>
                         </li>
                     )
                 })}
             </ul>
             {/*onClick has to run something, not just return a value, the expected type is a function*/}
-            <button onClick={joinLobby}>
-                join
+            <button className='join-btn' onClick={joinLobby}>
+                Join
             </button>
         </>
     )

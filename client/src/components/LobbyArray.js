@@ -1,5 +1,6 @@
 import { ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Lobby.css';
 
 export function LobbyArray(props) {
 
@@ -34,7 +35,7 @@ export function LobbyArray(props) {
 
     return (
 
-        <ul>
+        <ul className='text-center lobby-list'>
             {lobbies.length === 0 && "No Lobbies Yet"}
             {lobbies.map((lobby, i) => {
                 return (

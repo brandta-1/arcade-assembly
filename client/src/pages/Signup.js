@@ -194,7 +194,7 @@ const Signup = () => {
            */}
 
           <div className='avatarUploadGroup'>
-            <h4>Or, upload your own avatar:</h4>
+            {/* <h4>Or, upload your own avatar:</h4> */}
             {/* <IKContext publicKey={publicKey} urlEndpoint={urlEndpoint} authenticationEndpoint={authenticationEndpoint} >
               <IKUpload fileName="abc.jpg" tags={["tag1"]} useUniqueFileName={true} isPrivateFile={false} />
             </IKContext> */}

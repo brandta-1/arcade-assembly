@@ -29,7 +29,8 @@ const typeDefs = gql`
         game: Game
         owner: User
         players: [User]
-        limit: Int
+        limit: Int,
+        about: String
     }
 
     type Auth {
@@ -45,7 +46,7 @@ const typeDefs = gql`
         me: User
         getUser(userId: ID, username: String): User 
         getGameLobbies(igdb: String): [Lobby]
-        getUserLobbies(username: String): [Lobby]
+        getUserLobbies(username: String, userId: ID): [Lobby]
         getUsers: [User]
         
     }
@@ -61,7 +62,7 @@ const typeDefs = gql`
     addGame(igdb: String!, cover: String, name: String!, date: Date): Game
 
     #given the ID of a lobby, and a user, add and remove them
-    createLobby(gameId: ID!, userId: ID, limit: Int!): Lobby
+    createLobby(gameId: ID!, userId: ID, limit: Int!, about: String): Lobby
     join(lobbyId: ID!): Lobby
     leave(lobbyId: ID!, username: String!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby

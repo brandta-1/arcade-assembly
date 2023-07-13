@@ -26,6 +26,9 @@ const lobbySchema = new Schema(
             min: 2,
             max: 64
         },
+        about: {
+            type: String
+        }
     },
     {
         toJSON: {

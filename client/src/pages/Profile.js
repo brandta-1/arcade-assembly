@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_USER, GET_ME, GET_USER_LOBBIES } from '../utils/queries';
 import { LobbyArray } from '../components/LobbyArray';
 import { Link } from 'react-router-dom';
@@ -14,12 +14,15 @@ const Profile = () => {
   console.log(userId);
 
   const { loading: userLoading, data: userQueryData } = useQuery(userId ? GET_USER : GET_ME, { variables: { userId } });
-  const {loading: lobbyLoading, data: userLobbyData} = useQuery(GET_USER_LOBBIES, {variables: {userId: userId}})
-  
-  
-  
+  const { loading: lobbyLoading, data: userLobbyData } = useQuery(GET_USER_LOBBIES, { variables: { userId: userId } })
+
+  const [getLazy, { data: lazy }] = useLazyQuery(GET_USER_LOBBIES, {
+    //this took about 10 hours to figure out...
+    fetchPolicy: 'network-only',
+  });
+
   //getUserLobbies({ variables: { userId } })
-  
+
   console.log(userQueryData?.me);
   console.log(userQueryData?.getUser);
   // const { loading: lobbiesLoading, data: userLobbiesData } = useQuery(GET_USER_LOBBIES, { variables: { username } })
@@ -27,12 +30,25 @@ const Profile = () => {
   const userData = userQueryData?.getUser || userQueryData?.me || {};
   console.log("User Data", userData);
 
-  const userLobbies = userLobbyData || {}
-  console.log("user lobbies", userLobbies)
 
+
+  const lobbies = userLobbyData?.getUserLobbies || {}
   
-    
-  
+
+
+  const [lobbyState, setLobbyState] = useState(lobbies);
+  if (lazy) {
+    if (lazy.getGameLobbies != lobbyState) {
+      setLobbyState(lazy.getGameLobbies);
+
+    }
+  }
+
+  useEffect(() => {
+    //TODO useeffect
+    setLobbyState(lobbies)
+  }, [lobbies]);
+
   // const lobbiesData = userLobbiesData?.getUserLobbies;
   // console.log("Lobbies Data", lobbiesData);
 
@@ -95,20 +111,20 @@ const Profile = () => {
       id: 2,
       label: 'Lobbies',
       content:
-        <LobbyArray lobbies={userLobbyData} game={"profile"}/>
-        
+        <LobbyArray lobbies={lobbyState} game={"profile"} />
+
     },
     { id: 3, label: 'Favorite Games', content: <div>Coming Soon</div> }
   ];
-  
+
   return (
     <div className='profileContainer'>
-       <div className="back-button" onClick={goBack}>
+      <div className="back-button" onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} />
         <span>Go Back</span>
       </div>
       <div className='profileHeader'>
-          <img className='avatar' src={userData.avatarURL} />
+        <img className='avatar' src={userData.avatarURL} />
         <div className='headerText'>
           <h1> {userData.username} </h1>
           <hr />

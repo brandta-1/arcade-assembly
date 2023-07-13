@@ -32,34 +32,74 @@ export function LobbyArray(props) {
 
     };
 
-    if (!lobbies || lobbies == {} || lobbies[0] == undefined) {
+    if (!lobbies || lobbies == {}) {
         console.log(lobbies);
         return (
             <p>loading...</p>
         )
     }
 
-    return (
+    if(lobbies[0] == undefined){
+        return (
+            <p>No Lobbies Yet</p>
+        )
+    }
 
-        <ul className='text-center lobby-list'>
-            {lobbies.length === 0 && "No Lobbies Yet"}
-            {lobbies.map((lobby, i) => {
 
-                if (lobby.players.length > 0) {
-                    return (
-                        <ListGroup.Item
-                            key={i}
-                            onClick={() => handleClick(lobby, i)}>
-                            <p>
-                                {lobby.owner.username}'s {game.name} lobby {lobby.players.length}/{lobby.limit}
-                            </p>
-                        </ListGroup.Item>
-                    )
-                }
-            })}
 
-        </ul>
-    )
+    //this is what you get after 3 consecutive all-nighters...
+
+    if(game == "profile"){
+        return (
+
+            <ul className='text-center lobby-list'>
+                {lobbies.length === 0 && "No Lobbies Yet"}
+                {lobbies.map((lobby, i) => {
+    
+                    if (lobby.players.length > 0) {
+    
+                        return (
+                            <ListGroup.Item
+                                key={i}
+                                onClick={() => handleClick(lobby, i)}>
+                                <p>
+                                    {lobby.owner.username}'s {lobby.game.name} lobby {lobby.players.length}/{lobby.limit}
+                                </p>
+                            </ListGroup.Item>
+                        )
+                    }
+                })}
+    
+            </ul>
+        )
+    } else {
+        return (
+
+            <ul className='text-center lobby-list'>
+                {lobbies.length === 0 && "No Lobbies Yet"}
+                {lobbies.map((lobby, i) => {
+    
+                    if (lobby.players.length > 0) {
+    
+                        return (
+                            <ListGroup.Item
+                                key={i}
+                                onClick={() => handleClick(lobby, i)}>
+                                <p>
+                                    {lobby.owner.username}'s {game.name} lobby {lobby.players.length}/{lobby.limit}
+                                </p>
+                            </ListGroup.Item>
+                        )
+                    }
+                })}
+    
+            </ul>
+        )
+
+
+    }
+
+   
 
 }
 

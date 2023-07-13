@@ -70,10 +70,15 @@ export default function Lobby() {
                 console.log("youre not the leader")
             } else {
                 console.log(`${username} kicked`)
+                console.log(data.data.leave);
                 setLobby({
                     game: lobby.game,
                     lobby: data.data.leave
                 })
+                if(data.data.leave.players.length == 0){
+                    console.log("empty");
+                    navigate(-1);
+                }
             }
 
         } catch (err) {

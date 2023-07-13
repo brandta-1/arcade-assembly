@@ -19,11 +19,22 @@ const Game = () => {
 
     const { loading: gameLoading, data: gameData } = useQuery(GET_GAME, { variables: { igdb: gameId } })
 
+    const [getLazy, { data: lazy }] = useLazyQuery(GET_GAME_LOBBIES, {
+        //this took about 10 hours to figure out...
+        fetchPolicy: 'network-only',
+    });
+
     const lobbies = lobbyData?.getGameLobbies || {};
 
     console.log(lobbies);
     //only say lobbies if addgame has not been called, otherwise you need 
     const [lobbyState, setLobbyState] = useState(lobbies);
+    if (lazy) {
+        if (lazy.getGameLobbies != lobbyState) {
+            setLobbyState(lazy.getGameLobbies);
+
+        }
+    }
 
     useEffect(() => {
         //TODO useeffect
@@ -32,13 +43,15 @@ const Game = () => {
 
     const game = gameData?.getGame || {};
 
-    function addLobby({ data }) {
-        setLobbyState((currLobbies) => {
-            return [
-                ...currLobbies,
-                data.createLobby
-            ]
+
+    async function addLobby({ data }) {
+        console.log("addLobby",data);
+
+       const test = await getLazy({
+            variables: { igdb: gameId }
         })
+        console.log(test);
+        setLobbyState(test.data.getGameLobbies)
     }
 
     if (gameLoading || lobbyLoading) {

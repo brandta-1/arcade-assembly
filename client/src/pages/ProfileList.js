@@ -44,7 +44,6 @@ const ProfileList = () => {
                                     <hr />
                                     <div className='userMetrics'>
                                         <p>Friends: {user.friends.length} </p>
-                                        <p>Lobbies: 0 </p>
                                     </div>
                                 </div>
                                 <img className='listAvatar' src={user.avatarURL} />

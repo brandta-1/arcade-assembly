@@ -113,3 +113,14 @@ mutation Mutation($userId: ID!, $friendId: ID!) {
   }
 }
 `
+
+export const REMOVE_FRIEND = gql`
+mutation Mutation($userId: ID!, $friendId: ID!) {
+  removeFriend(userId: $userId, friendId: $friendId) {
+    _id
+    username
+    firstName
+    lastName
+  }
+}
+`

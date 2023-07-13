@@ -4,8 +4,14 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import '../styles/Signup.css';
+// import { IKImage, IKContext, IKUpload } from 'imagekitio-react'
 
 const Signup = () => {
+
+  // info for image uploads
+  const publicKey = "public_HCJZE+YwKYecvofGGZ+jCfHG1yw=";
+  let urlEndpoint = "https://ik.imagekit.io/ofawn8dpgq/";
+  const authenticationEndpoint = "https://www.yourserver.com/auth";
 
   const avatar1 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar1.png?updatedAt=1688305286552';
   const avatar2 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar4.png?updatedAt=1688305286455'
@@ -13,7 +19,7 @@ const Signup = () => {
   const avatar4 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar3.png?updatedAt=1688305286435';
   const avatar5 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar7.png?updatedAt=1688305286447'
   const avatar6 = 'https://ik.imagekit.io/ofawn8dpgq/Project3_Avatars/defaultAvatar2.png?updatedAt=1688305286483'
-  
+
 
   const [AddUser] = useMutation(ADD_USER);
   // set initial form state
@@ -30,7 +36,7 @@ const Signup = () => {
 
   const handleAvatarClick = (avatar, e) => {
     setUserFormData({ ...userFormData, avatarURL: avatar });
-    const selectedAvatar = e.target.classList[1]; 
+    const selectedAvatar = e.target.classList[1];
     document.querySelector(".selectedAvatar").innerHTML = `Selection: ${selectedAvatar}`;
   };
 
@@ -186,6 +192,16 @@ const Signup = () => {
           Add in code to allow the user to select their own image from their device
           Here is my URL endpoint: https://ik.imagekit.io/ofawn8dpgq/
            */}
+
+          <div className='avatarUploadGroup'>
+            <h4>Or, upload your own avatar:</h4>
+            {/* <IKContext publicKey={publicKey} urlEndpoint={urlEndpoint} authenticationEndpoint={authenticationEndpoint} >
+              <IKUpload fileName="abc.jpg" tags={["tag1"]} useUniqueFileName={true} isPrivateFile={false} />
+            </IKContext> */}
+
+          </div>
+
+
 
         </div>
 

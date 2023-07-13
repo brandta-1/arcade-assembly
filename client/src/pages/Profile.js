@@ -10,6 +10,7 @@ import '../styles/Profile.css'
 
 import { useMutation } from '@apollo/client';
 import { ADD_FRIEND } from '../utils/mutations';
+import { REMOVE_FRIEND } from '../utils/mutations';
 
 import Auth from '../utils/auth'
 
@@ -22,6 +23,22 @@ const Profile = () => {
   const { loading: lobbyLoading, data: userLobbyData } = useQuery(GET_USER_LOBBIES, { variables: { userId: userId } })
   const userData = userQueryData?.getUser || userQueryData?.me || {};
   const userLobbies = userLobbyData || {}
+
+  const [removeFriend] = useMutation(REMOVE_FRIEND);
+  const removeFriendButton = async (userId, friendId) => {
+    try {
+      const { data } = await removeFriend({
+        variables: {
+          userId: userId,
+          friendId: friendId
+        }
+      })
+      // redirect back to /me route 
+      window.location.assign('/me')
+    } catch (err) {
+      console.log("Friend not removed")
+    }
+  }
 
   const [addFriend] = useMutation(ADD_FRIEND);
   const addFriendButton = async (userId, friendId) => {
@@ -88,6 +105,7 @@ const Profile = () => {
                     <h4>{friend.username}</h4>
                     <p>{friend.firstName} {friend.lastName}</p>
                   </div>
+                  <p key={friend._id} className='removeFriend' onClick={() => removeFriendButton(currentUserId, friend._id)}>X</p>
                 </div>
               ))
             )}

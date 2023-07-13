@@ -67,8 +67,9 @@ const typeDefs = gql`
     leave(lobbyId: ID!, username: String!): Lobby
     promote(lobbyId: ID!, userId: ID!): Lobby
 
-    # add friends to user
+    # add/friends friends from user
     addFriend(userId: ID!, friendId: ID!): User
+    removeFriend(userId: ID!, friendId: ID!): User
     }
 `;
 
